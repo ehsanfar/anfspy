@@ -185,6 +185,27 @@ class FederateLite():
                         element.removeSavedTask(task)
                         # print len(element.savedTasks)
 
+    def getBundleListCost(self, bundlelist, elementDict, federateDict):
+        alltuple = [edge for bundle in bundlelist for edge in bundle]
+        print "getBundleCost: ", alltuple
+        tuplecostdict = {tupe: self.getCost('oISL', federateDict[tup[1]]) if elementDict[tup[1]].isSpace() else self.getCost('oSGL', federateDict[tup[1]]) for tup in alltuple}
+
+        costlist = []
+        for bundle in bundlelist:
+            costlist.append(sum([tuplecostdict[b] for b in bundle]))
+
+        return costlist
+
+
+
+
+
+
+
+
+
+
+
 
 
 

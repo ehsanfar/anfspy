@@ -6,62 +6,22 @@ import pymongo
 from scoop import futures
 import sys, os
 import re
-
+import networkx as nx
 # add ofspy to system path
 sys.path.append(os.path.abspath('..'))
 
 db = None  # lazy-load if required
 
-from ofspy.ofsLite import OFSL
+from anfspy.elementLite import Satellite, GroundStation
+from anfspy.federateLite import FederateLite
+from anfspy.federateLite import FederateLite
+from anfspy.contextLite import ContextLite
+from anfspy.graphdrawfunctions import findAllPaths
+from anfspy.task import Task
+from anfspy.auctioneer import Auctioneer
+
 import socket
 import json
-
-
-
-def execute(dbHost, dbPort, dbName, start, stop, cases, numPlayers,
-            initialCash, numTurns, ops, fops):
-    """
-    Executes a general experiment.
-    @param dbHost: the database host
-    @type dbHost: L{str}
-    @param dbPort: the database port
-    @type dbPort: L{int}
-    @param dbName: the database collection name
-    @type dbName: L{str}
-    @param start: the starting seed
-    @type start: L{int}
-    @param stop: the stopping seed
-    @type stop: L{int}
-    @param cases: the list of designs to execute
-    @type cases: L{list}
-    @param numPlayers: the number of players
-    @type numPlayers: L{int}
-    @param initialCash: the initial cash
-    @type initialCash: L{int}
-    @param numTurns: the number of turns
-    @param numTurns: the number of turns
-    @type numTurns: L{int}
-    @param ops: the operations definition
-    @type ops: L{str}
-    @param fops: the federation operations definition
-    @type fops: L{str}
-    """
-    # print "cases:", cases
-    # print start, stop
-    executions = [(dbHost, dbPort, dbName,
-                   [e for e in elements.split(' ') if e != ''],
-                   numPlayers, initialCash, numTurns, seed, ops, fops)
-                  for (seed, elements) in itertools.product(range(start, stop), cases)]
-    numComplete = 0.0
-    logging.info('Executing {} cases with seeds from {} to {} for {} total executions.'
-                 .format(len(cases), start, stop, len(executions)))
-    # for results in futures.map(queryCase, executions):
-    # results = futures.map(queryCase, executions)
-    futures.map(queryCase, executions)
-    # print "results :", results
-    # N = len(results[0])
-    # This line calculates the average of each element of each tuple for all the lists in the results, in other words assuming that each tuple of each results shows one seed of the same identity
-    # print [[sum(x)/float(N) for x in zip(*l)] for l in [[l[j] for l in results] for j in range(N)]]
 
 
 def queryCase((dbHost, dbPort, dbName, elements, numPlayers,
@@ -91,8 +51,6 @@ def queryCase((dbHost, dbPort, dbName, elements, numPlayers,
     @return: L{list}
     """
     # print "elements:", elements
-    executeCase((elements, numPlayers, initialCash,
-                 numTurns, seed, ops, fops))
     """
     global db
     dbHost = socket.gethostbyname(socket.gethostname())
@@ -164,58 +122,11 @@ def queryCase((dbHost, dbPort, dbName, elements, numPlayers,
     return [tuple(result) for result in doc[u'results']]
 """
 
-def executeCase((elements, numPlayers, initialCash, numTurns, seed, ops, fops)):
-    """
-    Executes an OFS simulation.
-    @param elements: the design specifications
-    @type elements: L{list}
-    @param numPlayers: the number of players
-    @type numPlayers: L{int}
-    @param initialCash: the initial cash
-    @type initialCash: L{int}
-    @param numTurns: the number of turns
-    @type numTurns: L{int}
-    @param seed: the random number seed
-    @type seed: L{int}
-    @param ops: the operations definition
-    @type ops: L{str}
-    @param fops: the federation operations definition
-    @type fops: L{str}
-    """
-    # print "ofs-exp-vs elements: ", elements
-    #
-    # return OFSL(elements=elements, numPlayers=numPlayers, initialCash=initialCash, numTurns=numTurns, seed=seed, ops=ops, fops=fops).execute()
-    OFSL(elements=elements, numPlayers=numPlayers, numTurns=numTurns, seed=seed, ops=ops, fops=fops)
-
-
 
 
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description="This program runs an OFS experiment.")
-    # parser.add_argument('experiment', type=str, nargs='+',
-    #                     help='the experiment to run: masv or bvc')
-    parser.add_argument('-d', '--numTurns', type=int, default=24,
-                        help='simulation duration (number of turns)')
-    parser.add_argument('-p', '--numPlayers', type=int, default=None,
-                        help='number of players')
-    parser.add_argument('-i', '--initialCash', type=int, default=None,
-                        help='initial cash')
-    parser.add_argument('-o', '--ops', type=str, default='d6',
-                        help='federate operations model specification')
-    parser.add_argument('-f', '--fops', type=str, default='',
-                        help='federation operations model specification')
-    parser.add_argument('-l', '--logging', type=str, default='error',
-                        choices=['debug', 'info', 'warning', 'error'],
-                        help='logging level')
-    parser.add_argument('-s', '--start', type=int, default=0,
-                        help='starting random number seed')
-    parser.add_argument('-t', '--stop', type=int, default=20,
-                        help='stopping random number seed')
-    parser.add_argument('--dbHost', type=str, default=None,
-                        help='database host')
-    parser.add_argument('--dbPort', type=int, default=27017,
-                        help='database port')
 
     args = parser.parse_args()
 
@@ -229,67 +140,63 @@ if __name__ == '__main__':
     #     #     print l
     #     #     hardcoded_designs.append(l)
     # hardcoded_designs = [x.strip() for x in hardcoded_designs]
-    hardcoded_designs = (
-        # "1.GroundSta@SUR1,oSGL 2.GroundSta@SUR3,oSGL 1.MediumSat@MEO3,VIS,SAR,oSGL,oISL  2.MediumSat@MEO5,VIS,SAR,oSGL,oISL",
-        "1.SmallSat@MEO6,oSGL,oISL 1.MediumSat@MEO4,VIS,SAR,oSGL,oISL 2.SmallSat@MEO2,oSGL,oISL 2.MediumSat@MEO1,VIS,SAR,oSGL,oISL 1.GroundSta@SUR1,oSGL 2.GroundSta@SUR4,oSGL",
-        # "1.SmasllSat@MEO6,oSGL,oISL 1.SmallSat@MEO5,oSGL,oISL 1.LargeSat@MEO4,VIS,SAR,DAT,oSGL,oISL 2.SmallSat@MEO3,oSGL,oISL 2.SmallSat@MEO2,oSGL,oISL 2.LargeSat@MEO1,VIS,SAR,DAT,oSGL,oISL 1.GroundSta@SUR1,oSGL 2.GroundSta@SUR4,oSGL",
-        # "1.SmallSat@MEO6,oSGL,oISL 1.MediumSat@MEO5,DAT,oSGL,oISL 1.MediumSat@MEO4,VIS,SAR,oSGL,oISL 2.SmallSat@MEO3,oSGL,oISL 2.MediumSat@MEO2,DAT,oSGL,oISL 2.MediumSat@MEO1,VIS,SAR,oSGL,oISL 1.GroundSta@SUR1,oSGL 2.GroundSta@SUR4,oSGL",
-        # "1.SmallSat@MEO6,oSGL,oISL 1.MediumSat@MEO5,DAT,oSGL,oISL 1.LargeSat@MEO4,VIS,SAR,DAT,oSGL,oISL 2.SmallSat@MEO3,oSGL,oISL 2.MediumSat@MEO2,DAT,oSGL,oISL 2.LargeSat@MEO1,VIS,SAR,DAT,oSGL,oISL 1.GroundSta@SUR1,oSGL 2.GroundSta@SUR4,oSGL",
-        "1.SmallSat@LEO6,oSGL,oISL 1.MediumSat@MEO5,VIS,SAR,oSGL,oISL 1.MediumSat@MEO4,VIS,SAR,oSGL,oISL 2.SmallSat@MEO3,oSGL,oISL 2.MediumSat@MEO2,VIS,SAR,oSGL,oISL 2.MediumSat@MEO1,VIS,SAR,oSGL,oISL 1.GroundSta@SUR1,oSGL 2.GroundSta@SUR4,oSGL",
-        # "1.SmallSat@MEO6,oSGL,oISL 1.MediumSat@MEO5,VIS,SAR,oSGL,oISL 1.LargeSat@MEO4,VIS,SAR,DAT,oSGL,oISL 2.SmallSat@MEO3,oSGL,oISL 2.MediumSat@MEO2,VIS,SAR,oSGL,oISL 2.LargeSat@MEO1,VIS,SAR,DAT,oSGL,oISL 1.GroundSta@SUR1,oSGL 2.GroundSta@SUR4,oSGL",
-        # "1.MediumSat@MEO6,VIS,oSGL,oISL 1.MediumSat@MEO5,VIS,oSGL,oISL 1.LargeSat@MEO4,VIS,SAR,DAT,oSGL,oISL 2.MediumSat@MEO3,VIS,oSGL,oISL 2.MediumSat@MEO2,VIS,oSGL,oISL 2.LargeSat@MEO1,VIS,SAR,DAT,oSGL,oISL 1.GroundSta@SUR1,oSGL 2.GroundSta@SUR4,oSGL",
-        # "1.MediumSat@MEO6,VIS,oSGL,oISL 1.MediumSat@MEO5,VIS,DAT,oSGL,oISL 1.LargeSat@MEO4,VIS,SAR,DAT,oSGL,oISL 2.MediumSat@MEO3,VIS,oSGL,oISL 2.MediumSat@MEO2,VIS,DAT,oSGL,oISL 2.LargeSat@MEO1,VIS,SAR,DAT,oSGL,oISL 1.GroundSta@SUR1,oSGL 2.GroundSta@SUR4,oSGL",
-        # "1.MediumSat@MEO6,VIS,SAR,oSGL,oISL 1.MediumSat@MEO5,VIS,SAR,oSGL,oISL 1.LargeSat@MEO4,VIS,SAR,DAT,oSGL,oISL 2.MediumSat@MEO3,VIS,SAR,oSGL,oISL 2.MediumSat@MEO2,VIS,SAR,oSGL,oISL 2.LargeSat@MEO1,VIS,SAR,DAT,oSGL,oISL 1.GroundSta@SUR1,oSGL 2.GroundSta@SUR4,oSGL",
-        #
-        # "1.GroundSta@SUR%d,oSGL 2.GroundSta@SUR%d,oSGL 3.GroundSta@SUR%d,oSGL 1.SmallSat@MEO%d,oSGL,oISL 1.MediumSat@MEO%d,VIS,SAR,oSGL,oISL 2.SmallSat@LEO%d,oSGL,oISL 2.MediumSat@MEO%d,VIS,SAR,oSGL,oISL 3.SmallSat@LEO%d,oSGL,oISL 3.MediumSat@MEO%d,VIS,SAR,oSGL,oISL"%(1,4,5,1,3,6,4,5,2),
-        # "1.GroundSta@SUR%d,oSGL 2.GroundSta@SUR%d,oSGL 3.GroundSta@SUR%d,oSGL 1.SmallSat@MEO%d,oSGL,oISL 1.SmallSat@MEO%d,oSGL,oISL 1.LargeSat@MEO%d,VIS,SAR,DAT,oSGL,oISL 2.SmallSat@MEO%d,oSGL,oISL 2.SmallSat@MEO%d,oSGL,oISL 2.LargeSat@MEO%d,VIS,SAR,DAT,oSGL,oISL 3.SmallSat@MEO%d,oSGL,oISL 3.SmallSat@MEO%d,oSGL,oISL 3.LargeSat@MEO%d,VIS,SAR,DAT,oSGL,oISL"%(1,3,5,1,3,6,3,5,2,5,1,4),
-        # "1.GroundSta@SUR%d,oSGL 2.GroundSta@SUR%d,oSGL 3.GroundSta@SUR%d,oSGL 1.SmallSat@MEO%d,oSGL,oISL 1.MediumSat@MEO%d,DAT,oSGL,oISL 1.MediumSat@MEO%d,VIS,SAR,oSGL,oISL 2.SmallSat@MEO%d,oSGL,oISL 2.MediumSat@MEO%d,DAT,oSGL,oISL 2.MediumSat@MEO%d,VIS,SAR,oSGL,oISL 3.SmallSat@MEO%d,oSGL,oISL 3.MediumSat@MEO%d,DAT,oSGL,oISL 3.MediumSat@MEO%d,VIS,SAR,oSGL,oISL"%(1,3,5,1,3,6,3,5,2,5,1,4),
-        # "1.GroundSta@SUR%d,oSGL 2.GroundSta@SUR%d,oSGL 3.GroundSta@SUR%d,oSGL 1.SmallSat@MEO%d,oSGL,oISL 1.MediumSat@MEO%d,VIS,SAR,oSGL,oISL 1.MediumSat@MEO%d,VIS,SAR,oSGL,oISL 2.SmallSat@MEO%d,oSGL,oISL 2.MediumSat@MEO%d,VIS,SAR,oSGL,oISL 2.MediumSat@MEO%d,VIS,SAR,oSGL,oISL 3.SmallSat@MEO%d,oSGL,oISL 3.MediumSat@MEO%d,VIS,SAR,oSGL,oISL 3.MediumSat@MEO%d,VIS,SAR,oSGL,oISL"%(1,3,5,1,3,6,3,5,2,5,1,4),
-        # "1.GroundSta@SUR%d,oSGL 2.GroundSta@SUR%d,oSGL 3.GroundSta@SUR%d,oSGL 1.SmallSat@MEO%d,oSGL,oISL 1.MediumSat@MEO%d,DAT,oSGL,oISL 1.LargeSat@MEO%d,VIS,SAR,DAT,oSGL,oISL 2.SmallSat@MEO%d,oSGL,oISL 2.MediumSat@MEO%d,DAT,oSGL,oISL 2.LargeSat@MEO%d,VIS,SAR,DAT,oSGL,oISL 3.SmallSat@MEO%d,oSGL,oISL 3.MediumSat@MEO%d,DAT,oSGL,oISL 3.LargeSat@MEO%d,VIS,SAR,DAT,oSGL,oISL"%(1,3,5,1,3,6,3,5,2,5,1,4),
-        #  "1.GroundSta@SUR%d,oSGL 2.GroundSta@SUR%d,oSGL 3.GroundSta@SUR%d,oSGL 1.SmallSat@MEO%d,oSGL,oISL 1.MediumSat@MEO%d,VIS,SAR,oSGL,oISL 1.LargeSat@MEO%d,VIS,SAR,DAT,oSGL,oISL 2.SmallSat@MEO%d,oSGL,oISL 2.MediumSat@MEO%d,VIS,SAR,oSGL,oISL 2.LargeSat@MEO%d,VIS,SAR,DAT,oSGL,oISL 3.SmallSat@MEO%d,oSGL,oISL 3.MediumSat@MEO%d,VIS,SAR,oSGL,oISL 3.LargeSat@MEO%d,VIS,SAR,DAT,oSGL,oISL"%(1,3,5,1,3,6,3,5,2,5,1,4),
-        # "1.GroundSta@SUR%d,oSGL 2.GroundSta@SUR%d,oSGL 3.GroundSta@SUR%d,oSGL 1.MediumSat@MEO%d,VIS,oSGL,oISL 1.MediumSat@MEO%d,VIS,oSGL,oISL 1.LargeSat@MEO%d,VIS,SAR,DAT,oSGL,oISL 2.MediumSat@MEO%d,VIS,oSGL,oISL 2.MediumSat@MEO%d,VIS,oSGL,oISL 2.LargeSat@MEO%d,VIS,SAR,DAT,oSGL,oISL 3.MediumSat@MEO%d,VIS,oSGL,oISL 3.MediumSat@MEO%d,VIS,oSGL,oISL 3.LargeSat@MEO%d,VIS,SAR,DAT,oSGL,oISL"%(1,3,5,1,3,6,3,5,2,5,1,4),
-        # "1.GroundSta@SUR%d,oSGL 2.GroundSta@SUR%d,oSGL 3.GroundSta@SUR%d,oSGL 1.MediumSat@MEO%d,VIS,oSGL,oISL 1.MediumSat@MEO%d,VIS,DAT,oSGL,oISL 1.LargeSat@MEO%d,VIS,SAR,DAT,oSGL,oISL 2.MediumSat@MEO%d,VIS,oSGL,oISL 2.MediumSat@MEO%d,VIS,DAT,oSGL,oISL 2.LargeSat@MEO%d,VIS,SAR,DAT,oSGL,oISL 3.MediumSat@MEO%d,VIS,oSGL,oISL 3.MediumSat@MEO%d,VIS,DAT,oSGL,oISL 3.LargeSat@MEO%d,VIS,SAR,DAT,oSGL,oISL"%(1,3,5,1,3,6,3,5,2,5,1,4),
-        # "1.GroundSta@SUR%d,oSGL 2.GroundSta@SUR%d,oSGL 3.GroundSta@SUR%d,oSGL 1.MediumSat@MEO%d,VIS,SAR,oSGL,oISL 1.MediumSat@MEO%d,VIS,SAR,oSGL,oISL 1.LargeSat@MEO%d,VIS,SAR,DAT,oSGL,oISL 2.MediumSat@MEO%d,VIS,SAR,oSGL,oISL 2.MediumSat@MEO%d,VIS,SAR,oSGL,oISL 2.LargeSat@MEO%d,VIS,SAR,DAT,oSGL,oISL 3.MediumSat@MEO%d,VIS,SAR,oSGL,oISL 3.MediumSat@MEO%d,VIS,SAR,oSGL,oISL 3.LargeSat@MEO%d,VIS,SAR,DAT,oSGL,oISL"%(1,3,5,1,3,6,3,5,2,5,1,4),
-    )
-    experiment = 'auctioneer'
-    for design in hardcoded_designs:
-        # print design
-        if '4.' in design:
-            numPlayers = 4
-        elif '3.' in design:
-            numPlayers = 3
-        else:
-            numPlayers = 2
+    networks = ([
+        {"nodes": [(1, "1.MediumSat"), (2, "1.MediumSat"), (3, "2.MediumSat"), (4, "2.MediumSat"), (5, "2.MediumSat"),
+                    (6, "3.MediumSat"), (7, "3.MediumSat"), (8, "3.MediumSat"), (9, "1.GroundSta"), (10, "2.GroundSta"), (11, "3.GraundSta")],
+         "edges": [(1,7), (4,7), (4,2), (6,2), (4,7), (7,3), (7,5), (2,5), (2,8), (3,11), (3,9), (5,11), (5,9), (8,9), (8,10)],
+        "sources": [1, 3, 6],
+        "destinations": [9, 10, 11]
+         }
+    ])
+    context = ContextLite()
 
-        stop = args.start + 1
-        execute(args.dbHost, args.dbPort, None, args.start, stop,
-                [design],
-                numPlayers, args.initialCash, args.numTurns,
-                None, None)
+    for net in networks:
+        elements = []
+        numelemenentdict = {}
+        nodes = [a[0] for a in net["nodes"]]
+        fednum = sorted(list(set([a[1][0] for a in net["nodes"]])))
+        federates = [FederateLite(name = 'F'+i, context = context) for i in fednum]
+        namefederatedict = {f.name: f for f in federates}
+        numfeddict = {n:f for (n, f) in zip(fednum, federates)}
+        for node in net["nodes"]:
+            n = node[1][0]
+            federate = numfeddict[n]
+            if 'Sat' in node[1]:
+                element = Satellite(federate = federate, name = 'S.%s.%d'%(federate.name, len(federate.satellites)+1), location = 'MEO1', cost = 800)
+                federate.satellites.append(element)
+            else:
+                element = GroundStation(federate = federate, name = 'G.%s.%d'%(federate.name, len(federate.stations)+1), location = 'SUR1', cost = 800)
+                federate.stations.append(element)
 
-        # for ops, fops in [('d6,a,1', 'x')]:#[('n', 'd6,a,1'), ('d6,a,1', 'n'), ('d6,a,1', 'x')]:#[('d6,a,1', 'x')]:#
-        #     if 'x' in fops:
-        #         stop = args.start + 1
-        #         # costsgl = costisl = 'v'
-        #         for costsgl in [a for a in range(500, 601, 200)]:# if a not in range(0, 1501,100)]:
-        #             # print "cost SGL:", costsgl
-        #             costisl = costsgl//2
-        #             fops = "x%s,%s,6,a,1"%(str(costsgl),str(costisl))
-        #             # print "fops:", fops
-        #             # print "ofs-exp-vs Design:",
-        #             execute(args.dbHost, args.dbPort, None, args.start, stop,
-        #                 [design],
-        #                 numPlayers, args.initialCash, args.numTurns,
-        #                 ops, fops, experiment)
-        #     else:
-        #         stop = args.start + 1
-        #         # print "fops:", fops
-        #         execute(args.dbHost, args.dbPort, None, args.start, stop,
-        #                 [design],
-        #                     numPlayers, args.initialCash, args.numTurns,
-        #                     ops, fops, experiment)
-        # else:
-        #     execute(args.dbHost, args.dbPort, None, args.start, args.stop,
-        #             [' '.join(args.experiment)],
-        #             numPlayers, args.initialCash, args.numTurns,
-        #             args.ops, args.fops, 0, 0)
+            federate.elements.append(element)
+            elements.append(element)
+            numelemenentdict[node[0]] = element.name
+
+        edges = [(numelemenentdict[x], numelemenentdict[y]) for (x,y) in net["edges"]]
+        G = nx.DiGraph()
+        names = [e.name for e in elements]
+        G.add_nodes_from(names)
+        G.add_edges_from(edges)
+        sources = [numelemenentdict[x] for x in net["sources"]]
+        destinations = [numelemenentdict[x] for x in net["destinations"]]
+
+
+        sourcetasks = [(s, Task(time = 0, id = i, federate = namefederatedict[re.search(r'.+\.(\w\d)\..+', s).group(1)])) for i, s in enumerate(sources)]
+
+
+        auctioneer = Auctioneer(federates, elements, names)
+
+        namefederatedict = {n: re.search(r'.+\.(\w\d)\..+', n).group(1) for n in names}
+        # print "name to federate dict: ", namefederatedict
+
+        for source, task in sourcetasks:
+            paths = findAllPaths(G, [source], destinations)
+            for path in paths:
+                auctioneer.addPath(task, path)
+
+        # print [(x.taskid, y) for (x, y) in auctioneer.pathdict.items()]
+        auctioneer.inquirePrice()
+
+
+
+

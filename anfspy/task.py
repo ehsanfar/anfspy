@@ -1,6 +1,6 @@
 
 class Task():
-    def __init__(self, time, id = None, value = 1000, computational = 1., expirationtime = 5, datasize = 1.):
+    def __init__(self, time, id = None, federate = None, value = 1000, computational = 1., expirationtime = 5, datasize = 1.):
         """
         @param demand: the demand for this contract
         @type demand: L{Demand}
@@ -16,7 +16,7 @@ class Task():
         self.activationTime = time + 1
         self.active = True
         self.nextstop = None
-        self.federateOwner = None
+        self.federateOwner = federate
         self.initSection = None
         self.pathlist = []
         self.pathcost = 0.

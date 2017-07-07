@@ -196,3 +196,39 @@ def drawGraphs(graph):
 
     # plt.savefig("Networks_elements%d_.png"%len(graph.elements), bbox_inches='tight')
     plt.show()
+
+
+def bfs_paths(G, source, destination):
+    queue = [(source, [source])]
+    while queue:
+        v, path = queue.pop(0)
+        for next in set(G.neighbors(v)) - set(path):
+            if next == destination:
+                yield path + [next]
+            else:
+                queue.append((next, path + [next]))
+
+def findAllPaths(G, sources, destinations):
+    allpathes = []
+    for s in sources:
+        for d in destinations:
+            allpathes.extend(bfs_paths(G, s, d))
+
+    return allpathes
+
+# nodes = range(1,12)
+# edges = [(1,7), (4,7), (4,2), (6,2), (4,7), (7,3), (7,5), (2,5), (2,8), (3,11), (3,9), (5,11), (5,9), (8,9), (8,10)]
+# sources = [1, 4, 6]
+# destinations = [9, 10, 11]
+#
+# G = nx.DiGraph()
+# G.add_nodes_from(nodes)
+# G.add_edges_from(edges)
+#
+# # for s in sources:
+# #     print s
+# #     gen = findAllPaths(G, [s], destinations)
+# #     print gen
+#
+#
+# print findAllPathes(G, sources, destinations)
