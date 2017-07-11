@@ -188,6 +188,8 @@ class FederateLite():
                         element.removeSavedTask(task)
                         # print len(element.savedTasks)
 
+    def 
+
     def getBundleListCost(self, bundlelist, elementDict):
         # print("Federates: bundellist:", edgebundlelist)
         alledges = [edge for bundle in bundlelist for edge in bundle.edgelist]

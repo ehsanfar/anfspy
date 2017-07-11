@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af902f19-53da-49b2-8802-04b1c66875c0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/anfspy/edgebundle.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/anfspy/edgebundle.py" afterPath="$PROJECT_DIR$/anfspy/bundle.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/Graph.py" afterPath="$PROJECT_DIR$/anfspy/Graph.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/auctioneer.py" afterPath="$PROJECT_DIR$/anfspy/auctioneer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/contextLite.py" afterPath="$PROJECT_DIR$/anfspy/contextLite.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/elementLite.py" afterPath="$PROJECT_DIR$/anfspy/elementLite.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/federateLite.py" afterPath="$PROJECT_DIR$/anfspy/federateLite.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/graphdrawfunctions.py" afterPath="$PROJECT_DIR$/anfspy/graphdrawfunctions.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/path.py" afterPath="$PROJECT_DIR$/anfspy/path.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/task.py" afterPath="$PROJECT_DIR$/anfspy/task.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/anfs.py" afterPath="$PROJECT_DIR$/bin/anfs.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -64,34 +58,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="federateLite.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="federateLite.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/anfspy/federateLite.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3045">
-              <caret line="218" column="0" lean-forward="false" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
+            <state relative-caret-position="173">
+              <caret line="190" column="8" lean-forward="false" selection-start-line="190" selection-start-column="8" selection-end-line="190" selection-end-column="8" />
               <folding>
                 <element signature="e#1#10#0" expanded="true" />
-                <marker date="1499740275000" expanded="true" signature="126:8315" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="auctioneer.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="auctioneer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/anfspy/auctioneer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="770">
-              <caret line="209" column="0" lean-forward="false" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="-2092">
+              <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+              <folding>
+                <element signature="e#0#48#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edgebundle.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/anfspy/edgebundle.py">
+      <file leaf-file-name="bundle.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/anfspy/bundle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
-              <caret line="49" column="54" lean-forward="false" selection-start-line="49" selection-start-column="54" selection-end-line="49" selection-end-column="54" />
+            <state relative-caret-position="210">
+              <caret line="14" column="28" lean-forward="false" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -222,12 +217,12 @@
         <option value="$PROJECT_DIR$/anfspy/Graph.py" />
         <option value="$PROJECT_DIR$/anfspy/contextLite.py" />
         <option value="$PROJECT_DIR$/anfspy/task.py" />
-        <option value="$PROJECT_DIR$/anfspy/federateLite.py" />
         <option value="$PROJECT_DIR$/anfspy/graphdrawfunctions.py" />
         <option value="$PROJECT_DIR$/anfspy/edgebundle.py" />
         <option value="$PROJECT_DIR$/anfspy/path.py" />
         <option value="$PROJECT_DIR$/bin/anfs.py" />
         <option value="$PROJECT_DIR$/anfspy/auctioneer.py" />
+        <option value="$PROJECT_DIR$/anfspy/federateLite.py" />
       </list>
     </option>
   </component>
@@ -474,9 +469,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="10" y="23" width="1910" height="980" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10005294" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10005294" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -522,7 +517,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/anfspy/edgebundle.py">
+    <entry file="file://$PROJECT_DIR$/anfspy/bundle.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
@@ -618,7 +613,6 @@
           <caret line="205" column="9" lean-forward="true" selection-start-line="205" selection-start-column="9" selection-end-line="205" selection-end-column="9" />
           <folding>
             <element signature="e#1#10#0" expanded="true" />
-            <marker date="1499740275000" expanded="true" signature="126:8315" ph="..." />
           </folding>
         </state>
       </provider>
@@ -657,7 +651,6 @@
           <caret line="8" column="111" lean-forward="false" selection-start-line="8" selection-start-column="81" selection-end-line="8" selection-end-column="111" />
           <folding>
             <element signature="e#1#10#0" expanded="true" />
-            <marker date="1499740275000" expanded="true" signature="126:8315" ph="..." />
           </folding>
         </state>
       </provider>
@@ -666,7 +659,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -786,7 +781,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#1#10#0" expanded="true" />
-            <marker date="1499740275000" expanded="true" signature="126:8315" ph="..." />
           </folding>
         </state>
       </provider>
@@ -795,7 +789,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1080">
           <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -899,7 +895,6 @@
           <caret line="1" column="6" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="6" />
           <folding>
             <element signature="e#1#10#0" expanded="true" />
-            <marker date="1499740275000" expanded="true" signature="126:8315" ph="..." />
           </folding>
         </state>
       </provider>
@@ -908,7 +903,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1095">
           <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1012,7 +1009,6 @@
           <caret line="1" column="6" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="6" />
           <folding>
             <element signature="e#1#10#0" expanded="true" />
-            <marker date="1499740275000" expanded="true" signature="126:8315" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1085,7 +1081,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="26" column="27" lean-forward="true" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
-          <folding />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1105,7 +1103,6 @@
           <caret line="1" column="6" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="6" />
           <folding>
             <element signature="e#1#10#0" expanded="true" />
-            <marker date="1499740275000" expanded="true" signature="126:8315" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1114,7 +1111,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1256,17 +1255,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/anfspy/federateLite.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3045">
-          <caret line="218" column="0" lean-forward="false" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
-          <folding>
-            <element signature="e#1#10#0" expanded="true" />
-            <marker date="1499740275000" expanded="true" signature="126:8315" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/anfspy/task.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -1293,14 +1281,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/anfspy/edgebundle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="49" column="54" lean-forward="false" selection-start-line="49" selection-start-column="54" selection-end-line="49" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/anfs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1890">
@@ -1311,11 +1291,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/anfspy/bundle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="28" lean-forward="false" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/anfspy/auctioneer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="770">
-          <caret line="209" column="0" lean-forward="false" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="-2092">
+          <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/anfspy/federateLite.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="190" column="8" lean-forward="false" selection-start-line="190" selection-start-column="8" selection-end-line="190" selection-end-column="8" />
+          <folding>
+            <element signature="e#1#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

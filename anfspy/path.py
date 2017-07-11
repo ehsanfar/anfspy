@@ -1,4 +1,4 @@
-from .edgebundle import EdgeBundle
+from .bundle import EdgeBundle
 
 class Path():
     def __init__(self, task, nodelist):

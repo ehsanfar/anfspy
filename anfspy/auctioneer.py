@@ -1,6 +1,6 @@
 from .graphdrawfunctions import convertPath2Edge
 from .path import Path
-from .edgebundle import EdgeBundle, PathBundle
+from .bundle import EdgeBundle, PathBundle
 import itertools
 
 
