@@ -3,7 +3,7 @@
 Elements classes.
 """
 import re
-import Queue
+import queue
 from .Graph import SuperGraph
 from .Graph import SuperGraph
 import random
@@ -108,7 +108,7 @@ class Satellite(Element):
         Element.__init__(self, federate, name, location, cost)
         self.capacity = capacity
         self.content = 0.
-        self.queuedTasks = Queue.Queue()
+        self.queuedTasks = queue.Queue()
         self.Graph = SuperGraph(self)
 
     def getCapacity(self):

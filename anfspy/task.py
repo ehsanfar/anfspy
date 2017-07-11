@@ -1,6 +1,6 @@
 
 class Task():
-    def __init__(self, time, id = None, federate = None, value = 1000, computational = 1., expirationtime = 5, datasize = 1.):
+    def __init__(self, time, federate, id, value = 1000, computational = 1., expirationtime = 5, datasize = 1.):
         """
         @param demand: the demand for this contract
         @type demand: L{Demand}

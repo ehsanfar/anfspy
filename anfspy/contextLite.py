@@ -1,7 +1,7 @@
 import random
 import numpy as np
 from .task import Task
-import Queue
+import queue
 from .federateLite import FederateLite
 import re
 
@@ -26,7 +26,7 @@ class ContextLite():
         self.elements = []
         self.masterfederate = []
         self.seed = 0
-        self.currentTasks = {i: Queue.Queue(maxsize = 3) for i in range(1,7)}
+        self.currentTasks = {i: queue.Queue(maxsize = 3) for i in range(1,7)}
         self.graph = []
         self.nodeLocations = []
         self.shortestPathes = []

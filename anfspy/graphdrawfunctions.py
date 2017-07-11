@@ -4,6 +4,8 @@ import networkx as nx
 import re
 import math
 
+def checkEqual2(iterator):
+   return len(set(iterator)) <= 1
 
 def findbestxy(N):
     if N % 2 != 0:
@@ -62,7 +64,7 @@ def fillBetween3Points(a, b, c):
         plt.fill_between(x1, y1, y2, color= col)
 
     elif y2 is None or y3 is None:
-        print "there is error with points"
+        print("there is error with points")
 
     else:
         # plt.plot(x1, y1, 'g')
@@ -93,7 +95,7 @@ def drawGraph(graph, context):
     #     alltuples = alltuples.union(pathedges)
 
     alltuples = set([])
-    print "Number of saved tasks:", [len(element.savedTasks) for element in graph.elements]
+    print("Number of saved tasks:", [len(element.savedTasks) for element in graph.elements])
     currenttasks = [e for l in [element.savedTasks for element in graph.elements] for e in l]
     assert len(set(currenttasks)) == len(currenttasks)
     activetasks = [t for t in currenttasks if t.activationTime == context.time]

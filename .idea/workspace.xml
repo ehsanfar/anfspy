@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af902f19-53da-49b2-8802-04b1c66875c0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/anfspy/auctioneer.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/anfspy/path.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/anfspy/edgebundle.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/Graph.py" afterPath="$PROJECT_DIR$/anfspy/Graph.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/auctioneer.py" afterPath="$PROJECT_DIR$/anfspy/auctioneer.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/contextLite.py" afterPath="$PROJECT_DIR$/anfspy/contextLite.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/elementLite.py" afterPath="$PROJECT_DIR$/anfspy/elementLite.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/federateLite.py" afterPath="$PROJECT_DIR$/anfspy/federateLite.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/graphdrawfunctions.py" afterPath="$PROJECT_DIR$/anfspy/graphdrawfunctions.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/path.py" afterPath="$PROJECT_DIR$/anfspy/path.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/task.py" afterPath="$PROJECT_DIR$/anfspy/task.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/anfs.py" afterPath="$PROJECT_DIR$/bin/anfs.py" />
     </list>
@@ -21,13 +25,16 @@
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="anfspy" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="anfs.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="anfs.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/anfs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="710">
-              <caret line="194" column="46" lean-forward="true" selection-start-line="194" selection-start-column="46" selection-end-line="194" selection-end-column="46" />
+            <state relative-caret-position="1890">
+              <caret line="133" column="23" lean-forward="false" selection-start-line="133" selection-start-column="23" selection-end-line="133" selection-end-column="23" />
               <folding>
                 <element signature="e#1#16#0" expanded="true" />
               </folding>
@@ -38,8 +45,8 @@
       <file leaf-file-name="task.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/anfspy/task.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="26" lean-forward="false" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+            <state relative-caret-position="30">
+              <caret line="2" column="41" lean-forward="false" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -48,8 +55,8 @@
       <file leaf-file-name="contextLite.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/anfspy/contextLite.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1605">
-              <caret line="114" column="41" lean-forward="false" selection-start-line="114" selection-start-column="41" selection-end-line="114" selection-end-column="56" />
+            <state relative-caret-position="255">
+              <caret line="24" column="27" lean-forward="false" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -60,23 +67,32 @@
       <file leaf-file-name="federateLite.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/anfspy/federateLite.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="111" lean-forward="false" selection-start-line="8" selection-start-column="81" selection-end-line="8" selection-end-column="111" />
+            <state relative-caret-position="3045">
+              <caret line="218" column="0" lean-forward="false" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
               <folding>
                 <element signature="e#1#10#0" expanded="true" />
+                <marker date="1499740275000" expanded="true" signature="126:8315" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="auctioneer.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="auctioneer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/anfspy/auctioneer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="15" column="20" lean-forward="true" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-              <folding>
-                <element signature="e#0#48#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="770">
+              <caret line="209" column="0" lean-forward="false" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edgebundle.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/anfspy/edgebundle.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="735">
+              <caret line="49" column="54" lean-forward="false" selection-start-line="49" selection-start-column="54" selection-end-line="49" selection-end-column="54" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -84,8 +100,8 @@
       <file leaf-file-name="path.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/anfspy/path.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="39" lean-forward="true" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
+            <state relative-caret-position="375">
+              <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -94,9 +110,11 @@
       <file leaf-file-name="elementLite.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/anfspy/elementLite.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="35">
-              <caret line="135" column="52" lean-forward="true" selection-start-line="135" selection-start-column="52" selection-end-line="135" selection-end-column="52" />
-              <folding />
+            <state relative-caret-position="2100">
+              <caret line="144" column="1" lean-forward="false" selection-start-line="144" selection-start-column="1" selection-end-line="144" selection-end-column="1" />
+              <folding>
+                <element signature="e#27#36#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -104,9 +122,55 @@
       <file leaf-file-name="Graph.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/anfspy/Graph.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="78" column="30" lean-forward="false" selection-start-line="78" selection-start-column="30" selection-end-line="78" selection-end-column="44" />
-              <folding />
+            <state relative-caret-position="15">
+              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+                <marker date="1499477124000" expanded="true" signature="231:6206" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="255:501" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="508:2355" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="2386:3691" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="2523:3268" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="2702:3268" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="2719:3020" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="3186:3268" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="3350:3573" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="3743:4241" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="3982:4093" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="4153:4220" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="4280:5651" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="4412:4562" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="4934:5525" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="4966:5525" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="5070:5525" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="5259:5462" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="5581:5651" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="5676:5723" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="5752:5782" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="5812:5843" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="5876:5910" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="5944:5996" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="6032:6086" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="6121:6154" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="6181:6206" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="6266:6532" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="6561:7020" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="6633:6912" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="6752:6878" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="7054:7636" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="7184:7388" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="7425:7636" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="7675:8195" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="8223:8424" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="8462:9665" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="8802:9526" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="8839:9526" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="8940:9526" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="9218:9475" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="9536:9623" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="10231:10355" ph="..." />
+                <marker date="1499477124000" expanded="true" signature="10394:10540" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -114,8 +178,8 @@
       <file leaf-file-name="graphdrawfunctions.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/anfspy/graphdrawfunctions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="208" column="51" lean-forward="true" selection-start-line="208" selection-start-column="51" selection-end-line="208" selection-end-column="51" />
+            <state relative-caret-position="60">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -135,6 +199,15 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>neighb</find>
+      <find>auctioneer.path</find>
+      <find>Que</find>
+      <find>deepcopy</find>
+      <find>Bundle</find>
+      <find>Queue</find>
+      <find>Bundle(</find>
+      <find>print(</find>
+      <find>self.pathdict</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -145,20 +218,24 @@
       <list>
         <option value="$PROJECT_DIR$/anfspy/Auctioneer.py" />
         <option value="$PROJECT_DIR$/anfspy/Path.py" />
-        <option value="$PROJECT_DIR$/anfspy/path.py" />
+        <option value="$PROJECT_DIR$/anfspy/elementLite.py" />
+        <option value="$PROJECT_DIR$/anfspy/Graph.py" />
+        <option value="$PROJECT_DIR$/anfspy/contextLite.py" />
         <option value="$PROJECT_DIR$/anfspy/task.py" />
         <option value="$PROJECT_DIR$/anfspy/federateLite.py" />
         <option value="$PROJECT_DIR$/anfspy/graphdrawfunctions.py" />
-        <option value="$PROJECT_DIR$/anfspy/auctioneer.py" />
+        <option value="$PROJECT_DIR$/anfspy/edgebundle.py" />
+        <option value="$PROJECT_DIR$/anfspy/path.py" />
         <option value="$PROJECT_DIR$/bin/anfs.py" />
+        <option value="$PROJECT_DIR$/anfspy/auctioneer.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="303" />
-    <option name="y" value="24" />
-    <option name="width" value="1241" />
-    <option name="height" value="977" />
+    <option name="x" value="10" />
+    <option name="y" value="23" />
+    <option name="width" value="1910" />
+    <option name="height" value="980" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -217,12 +294,13 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -385,11 +463,20 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="303" y="24" width="1241" height="977" extended-state="0" />
-    <editor active="true" />
+    <frame x="10" y="23" width="1910" height="980" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15163934" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10005294" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -403,7 +490,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32845894" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -413,10 +500,258 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/anfspy/auctioneer.py</url>
+          <line>72</line>
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/anfspy/auctioneer.py</url>
+          <line>36</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/anfspy/federateLite.py</url>
+          <line>71</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="3" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/anfspy/edgebundle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/anfspy/path.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/anfspy/elementLite.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2100">
+          <caret line="144" column="1" lean-forward="false" selection-start-line="144" selection-start-column="1" selection-end-line="144" selection-end-column="1" />
+          <folding>
+            <element signature="e#27#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/anfspy/Graph.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <marker date="1499477124000" expanded="true" signature="231:6206" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="255:501" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="508:2355" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2386:3691" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2523:3268" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2702:3268" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2719:3020" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3186:3268" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3350:3573" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3743:4241" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3982:4093" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4153:4220" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4280:5651" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4412:4562" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4934:5525" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4966:5525" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5070:5525" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5259:5462" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5581:5651" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5676:5723" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5752:5782" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5812:5843" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5876:5910" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5944:5996" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6032:6086" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6121:6154" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6181:6206" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6266:6532" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6561:7020" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6633:6912" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6752:6878" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7054:7636" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7184:7388" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7425:7636" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7675:8195" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8223:8424" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8462:9665" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8802:9526" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8839:9526" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8940:9526" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="9218:9475" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="9536:9623" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="10231:10355" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="10394:10540" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/anfspy/graphdrawfunctions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1365">
+          <caret line="95" column="92" lean-forward="false" selection-start-line="95" selection-start-column="92" selection-end-line="95" selection-end-column="92" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/anfspy/federateLite.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3075">
+          <caret line="205" column="9" lean-forward="true" selection-start-line="205" selection-start-column="9" selection-end-line="205" selection-end-column="9" />
+          <folding>
+            <element signature="e#1#10#0" expanded="true" />
+            <marker date="1499740275000" expanded="true" signature="126:8315" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/anfs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#1#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/anfspy/task.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="26" lean-forward="false" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/anfspy/contextLite.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1710">
+          <caret line="114" column="41" lean-forward="false" selection-start-line="114" selection-start-column="41" selection-end-line="114" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/anfspy/federateLite.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="111" lean-forward="false" selection-start-line="8" selection-start-column="81" selection-end-line="8" selection-end-column="111" />
+          <folding>
+            <element signature="e#1#10#0" expanded="true" />
+            <marker date="1499740275000" expanded="true" signature="126:8315" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/anfspy/auctioneer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/anfspy/path.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="39" lean-forward="true" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/anfspy/elementLite.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1965">
+          <caret line="135" column="52" lean-forward="true" selection-start-line="135" selection-start-column="52" selection-end-line="135" selection-end-column="52" />
+          <folding>
+            <element signature="e#27#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/anfspy/Graph.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1050">
+          <caret line="78" column="30" lean-forward="false" selection-start-line="78" selection-start-column="30" selection-end-line="78" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <marker date="1499477124000" expanded="true" signature="231:6206" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="255:501" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="508:2355" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2386:3691" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2523:3268" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2702:3268" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2719:3020" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3186:3268" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3350:3573" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3743:4241" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3982:4093" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4153:4220" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4280:5651" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4412:4562" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4934:5525" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4966:5525" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5070:5525" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5259:5462" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5581:5651" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5676:5723" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5752:5782" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5812:5843" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5876:5910" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5944:5996" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6032:6086" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6121:6154" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6181:6206" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6266:6532" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6561:7020" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6633:6912" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6752:6878" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7054:7636" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7184:7388" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7425:7636" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7675:8195" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8223:8424" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8462:9665" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8802:9526" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8839:9526" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8940:9526" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="9218:9475" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="9536:9623" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="10231:10355" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="10394:10540" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/anfspy/graphdrawfunctions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2895">
+          <caret line="197" column="14" lean-forward="true" selection-start-line="197" selection-start-column="14" selection-end-line="197" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/bin/anfs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2565">
@@ -451,6 +786,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#1#10#0" expanded="true" />
+            <marker date="1499740275000" expanded="true" signature="126:8315" ph="..." />
           </folding>
         </state>
       </provider>
@@ -459,9 +795,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1080">
           <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -469,7 +803,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#27#36#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -477,7 +813,53 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1830">
           <caret line="130" column="13" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <marker date="1499477124000" expanded="true" signature="231:6206" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="255:501" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="508:2355" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2386:3691" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2523:3268" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2702:3268" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2719:3020" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3186:3268" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3350:3573" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3743:4241" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3982:4093" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4153:4220" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4280:5651" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4412:4562" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4934:5525" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4966:5525" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5070:5525" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5259:5462" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5581:5651" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5676:5723" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5752:5782" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5812:5843" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5876:5910" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5944:5996" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6032:6086" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6121:6154" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6181:6206" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6266:6532" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6561:7020" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6633:6912" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6752:6878" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7054:7636" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7184:7388" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7425:7636" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7675:8195" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8223:8424" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8462:9665" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8802:9526" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8839:9526" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8940:9526" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="9218:9475" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="9536:9623" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="10231:10355" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="10394:10540" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -517,6 +899,7 @@
           <caret line="1" column="6" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="6" />
           <folding>
             <element signature="e#1#10#0" expanded="true" />
+            <marker date="1499740275000" expanded="true" signature="126:8315" ph="..." />
           </folding>
         </state>
       </provider>
@@ -525,9 +908,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1095">
           <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -535,7 +916,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#27#36#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -543,7 +926,53 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1830">
           <caret line="130" column="13" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <marker date="1499477124000" expanded="true" signature="231:6206" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="255:501" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="508:2355" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2386:3691" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2523:3268" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2702:3268" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2719:3020" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3186:3268" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3350:3573" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3743:4241" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3982:4093" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4153:4220" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4280:5651" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4412:4562" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4934:5525" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4966:5525" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5070:5525" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5259:5462" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5581:5651" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5676:5723" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5752:5782" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5812:5843" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5876:5910" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5944:5996" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6032:6086" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6121:6154" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6181:6206" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6266:6532" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6561:7020" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6633:6912" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6752:6878" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7054:7636" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7184:7388" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7425:7636" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7675:8195" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8223:8424" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8462:9665" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8802:9526" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8839:9526" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8940:9526" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="9218:9475" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="9536:9623" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="10231:10355" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="10394:10540" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -561,7 +990,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1938">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#27#36#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -581,6 +1012,7 @@
           <caret line="1" column="6" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="6" />
           <folding>
             <element signature="e#1#10#0" expanded="true" />
+            <marker date="1499740275000" expanded="true" signature="126:8315" ph="..." />
           </folding>
         </state>
       </provider>
@@ -589,7 +1021,53 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1522">
           <caret line="130" column="13" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <marker date="1499477124000" expanded="true" signature="231:6206" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="255:501" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="508:2355" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2386:3691" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2523:3268" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2702:3268" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2719:3020" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3186:3268" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3350:3573" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3743:4241" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3982:4093" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4153:4220" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4280:5651" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4412:4562" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4934:5525" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4966:5525" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5070:5525" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5259:5462" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5581:5651" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5676:5723" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5752:5782" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5812:5843" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5876:5910" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5944:5996" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6032:6086" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6121:6154" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6181:6206" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6266:6532" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6561:7020" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6633:6912" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6752:6878" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7054:7636" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7184:7388" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7425:7636" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7675:8195" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8223:8424" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8462:9665" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8802:9526" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8839:9526" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8940:9526" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="9218:9475" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="9536:9623" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="10231:10355" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="10394:10540" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -607,9 +1085,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="26" column="27" lean-forward="true" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -629,6 +1105,7 @@
           <caret line="1" column="6" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="6" />
           <folding>
             <element signature="e#1#10#0" expanded="true" />
+            <marker date="1499740275000" expanded="true" signature="126:8315" ph="..." />
           </folding>
         </state>
       </provider>
@@ -637,9 +1114,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -647,7 +1122,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#27#36#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -655,58 +1132,153 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1830">
           <caret line="130" column="13" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <marker date="1499477124000" expanded="true" signature="231:6206" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="255:501" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="508:2355" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2386:3691" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2523:3268" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2702:3268" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2719:3020" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3186:3268" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3350:3573" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3743:4241" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3982:4093" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4153:4220" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4280:5651" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4412:4562" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4934:5525" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4966:5525" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5070:5525" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5259:5462" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5581:5651" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5676:5723" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5752:5782" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5812:5843" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5876:5910" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5944:5996" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6032:6086" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6121:6154" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6181:6206" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6266:6532" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6561:7020" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6633:6912" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6752:6878" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7054:7636" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7184:7388" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7425:7636" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7675:8195" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8223:8424" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8462:9665" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8802:9526" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8839:9526" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8940:9526" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="9218:9475" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="9536:9623" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="10231:10355" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="10394:10540" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/anfspy/Graph.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+            <marker date="1499477124000" expanded="true" signature="231:6206" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="255:501" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="508:2355" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2386:3691" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2523:3268" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2702:3268" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="2719:3020" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3186:3268" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3350:3573" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3743:4241" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="3982:4093" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4153:4220" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4280:5651" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4412:4562" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4934:5525" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="4966:5525" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5070:5525" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5259:5462" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5581:5651" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5676:5723" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5752:5782" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5812:5843" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5876:5910" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="5944:5996" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6032:6086" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6121:6154" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6181:6206" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6266:6532" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6561:7020" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6633:6912" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="6752:6878" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7054:7636" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7184:7388" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7425:7636" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="7675:8195" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8223:8424" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8462:9665" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8802:9526" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8839:9526" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="8940:9526" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="9218:9475" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="9536:9623" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="10231:10355" ph="..." />
+            <marker date="1499477124000" expanded="true" signature="10394:10540" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/anfspy/elementLite.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2100">
+          <caret line="144" column="1" lean-forward="false" selection-start-line="144" selection-start-column="1" selection-end-line="144" selection-end-column="1" />
+          <folding>
+            <element signature="e#27#36#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/anfspy/contextLite.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1605">
-          <caret line="114" column="41" lean-forward="false" selection-start-line="114" selection-start-column="41" selection-end-line="114" selection-end-column="56" />
+        <state relative-caret-position="255">
+          <caret line="24" column="27" lean-forward="false" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/anfspy/task.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="26" lean-forward="false" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/anfspy/Graph.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="78" column="30" lean-forward="false" selection-start-line="78" selection-start-column="30" selection-end-line="78" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/anfspy/elementLite.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="135" column="52" lean-forward="true" selection-start-line="135" selection-start-column="52" selection-end-line="135" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/anfspy/federateLite.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="111" lean-forward="false" selection-start-line="8" selection-start-column="81" selection-end-line="8" selection-end-column="111" />
+        <state relative-caret-position="3045">
+          <caret line="218" column="0" lean-forward="false" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
           <folding>
             <element signature="e#1#10#0" expanded="true" />
+            <marker date="1499740275000" expanded="true" signature="126:8315" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/anfspy/task.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="41" lean-forward="false" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/anfspy/graphdrawfunctions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="208" column="51" lean-forward="true" selection-start-line="208" selection-start-column="51" selection-end-line="208" selection-end-column="51" />
+        <state relative-caret-position="60">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
@@ -715,29 +1287,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/anfspy/path.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="39" lean-forward="true" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
+        <state relative-caret-position="375">
+          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/anfspy/auctioneer.py">
+    <entry file="file://$PROJECT_DIR$/anfspy/edgebundle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="15" column="20" lean-forward="true" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="735">
+          <caret line="49" column="54" lean-forward="false" selection-start-line="49" selection-start-column="54" selection-end-line="49" selection-end-column="54" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bin/anfs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="710">
-          <caret line="194" column="46" lean-forward="true" selection-start-line="194" selection-start-column="46" selection-end-line="194" selection-end-column="46" />
+        <state relative-caret-position="1890">
+          <caret line="133" column="23" lean-forward="false" selection-start-line="133" selection-start-column="23" selection-end-line="133" selection-end-column="23" />
           <folding>
             <element signature="e#1#16#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/anfspy/auctioneer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="770">
+          <caret line="209" column="0" lean-forward="false" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

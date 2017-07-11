@@ -6,7 +6,7 @@ import math
 import numpy as np
 import time
 from itertools import cycle
-from graphdrawfunctions import *
+from .graphdrawfunctions import *
 
 
 class Graph():

@@ -3,7 +3,7 @@ import argparse
 import itertools
 import logging
 import pymongo
-from scoop import futures
+# from scoop import futures
 import sys, os
 import re
 import networkx as nx
@@ -23,10 +23,9 @@ from anfspy.auctioneer import Auctioneer
 import socket
 import json
 
-
-def queryCase((dbHost, dbPort, dbName, elements, numPlayers,
-              initialCash, numTurns, seed, ops, fops)):
-    """
+"""
+def queryCase((dbHost, dbPort, dbName, elements, numPlayers, initialCash, numTurns, seed, ops, fops)):
+    pass
     Queries and retrieves existing results or executes an OFS simulation.
     @param dbHost: the database host
     @type dbHost: L{str}
@@ -49,9 +48,7 @@ def queryCase((dbHost, dbPort, dbName, elements, numPlayers,
     @param fops: the federation operations definition
     @type fops: L{str}
     @return: L{list}
-    """
     # print "elements:", elements
-    """
     global db
     dbHost = socket.gethostbyname(socket.gethostname())
     # print dbHost, dbPort, dbName, db
@@ -122,8 +119,6 @@ def queryCase((dbHost, dbPort, dbName, elements, numPlayers,
     return [tuple(result) for result in doc[u'results']]
 """
 
-
-
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description="This program runs an OFS experiment.")
@@ -141,10 +136,10 @@ if __name__ == '__main__':
     #     #     hardcoded_designs.append(l)
     # hardcoded_designs = [x.strip() for x in hardcoded_designs]
     networks = ([
-        {"nodes": [(1, "1.MediumSat"), (2, "1.MediumSat"), (3, "2.MediumSat"), (4, "2.MediumSat"), (5, "2.MediumSat"),
-                    (6, "3.MediumSat"), (7, "3.MediumSat"), (8, "3.MediumSat"), (9, "1.GroundSta"), (10, "2.GroundSta"), (11, "3.GraundSta")],
-         "edges": [(1,7), (4,7), (4,2), (6,2), (4,7), (7,3), (7,5), (2,5), (2,8), (3,11), (3,9), (5,11), (5,9), (8,9), (8,10)],
-        "sources": [1, 3, 6],
+        {"nodes": [(4, "1.MediumSat"), (5, "1.MediumSat"), (6, "2.MediumSat"), (7, "2.MediumSat"), (8, "2.MediumSat"),
+                    (1, "3.MediumSat"), (2, "3.MediumSat"), (3, "3.MediumSat"), (10, "1.GroundSta"), (11, "2.GroundSta"), (9, "3.GraundSta")],
+         "edges": [(1,7), (4,7), (4,2), (6,2), (7,3), (7,5), (2,5), (2,8), (3,11), (5,9), (8,10), (3,9), (5,11)],# (5,10), (8,9)],
+        "sources": [1, 4, 6],
         "destinations": [9, 10, 11]
          }
     ])
@@ -172,6 +167,7 @@ if __name__ == '__main__':
             elements.append(element)
             numelemenentdict[node[0]] = element.name
 
+        print("numelementdict:", numelemenentdict)
         edges = [(numelemenentdict[x], numelemenentdict[y]) for (x,y) in net["edges"]]
         G = nx.DiGraph()
         names = [e.name for e in elements]
@@ -181,21 +177,35 @@ if __name__ == '__main__':
         destinations = [numelemenentdict[x] for x in net["destinations"]]
 
 
-        sourcetasks = [(s, Task(time = 0, id = i, federate = namefederatedict[re.search(r'.+\.(\w\d)\..+', s).group(1)])) for i, s in enumerate(sources)]
+        sourcetasks = [(s, Task(time = 0, id = i, federate = namefederatedict[re.search(r'.+\.(F\d)\..+', s).group(1)])) for i, s in enumerate(sources)]
 
+        nodefederatedict = {n: namefederatedict[re.search(r'.+\.(F\d)\..+', n).group(1)] for n in names}
 
-        auctioneer = Auctioneer(federates, elements, names)
+        nodeelementdict = {e.name: e for e in elements}
 
-        namefederatedict = {n: re.search(r'.+\.(\w\d)\..+', n).group(1) for n in names}
+        auctioneer = Auctioneer(nodes = names, nodefederatedict = nodefederatedict, nodeelementdict = nodeelementdict)
+
         # print "name to federate dict: ", namefederatedict
 
         for source, task in sourcetasks:
-            paths = findAllPaths(G, [source], destinations)
-            for path in paths:
-                auctioneer.addPath(task, path)
+            nodelists = findAllPaths(G, [source], destinations)
+            for nodelist in nodelists:
+                # print("Add path:", nodelist)
+                auctioneer.addPath(task, nodelist)
 
         # print [(x.taskid, y) for (x, y) in auctioneer.pathdict.items()]
+        # print("auctioneer path dictionary:", auctioneer.pathdict)
         auctioneer.inquirePrice()
+        for path in auctioneer.pathlist:
+            # print("Task federate:", path.task.federateOwner.name)
+            # print("path list:", path.nodelist)
+            print("path cost and nodelist:", path.pathcost, path.nodelist)
+        # print("anfs: auctioneer path cost:", [path.pathcost for path in auctioneer.pathlist])
+        # auctioneer.findCompatibleBundles()
+        auctioneer.findBestBundle()
+        print("Best bundle cost:", auctioneer.currentBestPathBundle.bundlecost, auctioneer.currentBestPathBundle.bundlerevenue)
+        auctioneer.updateOpportunityCost()
+
 
 
 

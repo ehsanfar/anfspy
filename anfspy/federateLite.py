@@ -6,7 +6,7 @@ from .elementLite import Satellite, GroundStation
 
 
 class FederateLite():
-    def __init__(self, name, context, initialCash=0, operation =OperationLite(), costSGL = 200., costISL = 100.):
+    def __init__(self, name, context, initialCash=0, operation =OperationLite(), costSGL = 201., costISL = 100.):
         """
         @param name: the name of this federate
         @type name: L{str}
@@ -66,14 +66,17 @@ class FederateLite():
         for element in self.elements:
             element.ticktock()
 
-    def setCost(self, protocol, cost):
-        self.costDic[protocol] = cost
+    # def setCost(self, protocol, cost):
+    #     self.costDic[protocol] = cost
 
-    def getCost(self, protocol, federate=None, type=None):
-        if self == federate:
+    def getCost(self, protocol, federate):
+        # print(self.name, federate.name, self.name == federate.name, self.costDic[protocol])
+        if self.name == federate.name:
             return 0.
-        key = '{}-{}'.format(federate, protocol)
-        return self.costDic[protocol] if key not in self.costDic else self.costDic[key]
+
+        return self.costDic[protocol]
+        # key = '{}-{}'.format(federate, protocol)
+        # return self.costDic[protocol] if key not in self.costDic else self.costDic[key]
 
     def addTransRevenue(self, protocol, amount):
         if protocol in self.transCounter:
@@ -185,16 +188,29 @@ class FederateLite():
                         element.removeSavedTask(task)
                         # print len(element.savedTasks)
 
-    def getBundleListCost(self, bundlelist, elementDict, federateDict):
-        alltuple = [edge for bundle in bundlelist for edge in bundle]
-        print "getBundleCost: ", alltuple
-        tuplecostdict = {tupe: self.getCost('oISL', federateDict[tup[1]]) if elementDict[tup[1]].isSpace() else self.getCost('oSGL', federateDict[tup[1]]) for tup in alltuple}
-
-        costlist = []
+    def getBundleListCost(self, bundlelist, elementDict):
+        # print("Federates: bundellist:", edgebundlelist)
+        alledges = [edge for bundle in bundlelist for edge in bundle.edgelist]
+        assert all([re.search(r'.+\.(F\d)\..+', tup[1]).group(1) == self.name for tup in alledges])
+        # edgeAskerDict = {edge: bundle.parentFederate for bundle in edgebundlelist for edge in bundle.edgelist}
+        bundlecostdict = {}
         for bundle in bundlelist:
-            costlist.append(sum([tuplecostdict[b] for b in bundle]))
+            edgeAskerDict = {}
+            asker = bundle.parentFederate
 
-        return costlist
+            tuplecostdict = {edge: self.getCost('oISL', asker) if elementDict[edge[1]].isSpace() else self.getCost('oSGL', asker) for edge in alledges}
+
+            bundlecostdict[bundle] = sum([tuplecostdict[b] for b in bundle.edgelist])
+
+        # print("federates: bundlecst:")
+        #
+        # for b in bundlecostdict:
+        #     print(b.parentFederate.name, self.name, bundlecostdict[b])
+        return bundlecostdict
+
+
+
+
 
 
 
