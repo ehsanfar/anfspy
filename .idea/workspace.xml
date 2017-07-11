@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af902f19-53da-49b2-8802-04b1c66875c0" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/anfspy/edgebundle.py" afterPath="$PROJECT_DIR$/anfspy/bundle.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/auctioneer.py" afterPath="$PROJECT_DIR$/anfspy/auctioneer.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/federateLite.py" afterPath="$PROJECT_DIR$/anfspy/federateLite.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/path.py" afterPath="$PROJECT_DIR$/anfspy/path.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -61,8 +57,8 @@
       <file leaf-file-name="federateLite.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/anfspy/federateLite.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="190" column="8" lean-forward="false" selection-start-line="190" selection-start-column="8" selection-end-line="190" selection-end-column="8" />
+            <state relative-caret-position="330">
+              <caret line="189" column="0" lean-forward="true" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
               <folding>
                 <element signature="e#1#10#0" expanded="true" />
               </folding>
@@ -1311,8 +1307,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/anfspy/federateLite.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="190" column="8" lean-forward="false" selection-start-line="190" selection-start-column="8" selection-end-line="190" selection-end-column="8" />
+        <state relative-caret-position="330">
+          <caret line="189" column="0" lean-forward="true" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
           <folding>
             <element signature="e#1#10#0" expanded="true" />
           </folding>
