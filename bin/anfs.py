@@ -119,6 +119,102 @@ def queryCase((dbHost, dbPort, dbName, elements, numPlayers, initialCash, numTur
 
     return [tuple(result) for result in doc[u'results']]
 """
+def save2db(resultDict, federates, nodefederatedict, nodeelementdict, names):
+    global db
+    dbHost = socket.gethostbyname(socket.gethostname())
+    dbHost = "127.0.0.1"
+    dbName = None
+    dbPort = 27017
+
+    if db is None and dbHost is not None:
+        # print "read from database"
+        db = pymongo.MongoClient(dbHost, dbPort).anfs
+
+    query = {u'experiment': resultDict["experiment"],
+             u'graphdict': resultDict["graphdict"],
+             u'numFederates': resultDict["numFederates"],
+             u'numTurns': resultDict["numTurns"],
+             u'seed': resultDict["seed"],
+             u'costDictList': resultDict["federateCostDictList"],
+             }
+
+    doc = None
+    if dbName is not None:
+        print("find query")
+        doc = db[dbName].find_one(query)
+        print(doc)
+
+    if doc is None:
+        # db.results.remove(query) #this is temporary, should be removed afterwards
+        doc = db.results.find_one(query)
+        print("found doc:",doc)
+        if doc is None:
+            resultDict = execute(resultDict, federates, nodefederatedict, nodeelementdict, names)
+            doc = {u'experiment': resultDict["experiment"],
+             u'graphdict': resultDict["graphdict"],
+             u'numFederates': resultDict["numFederates"],
+             u'numTurns': resultDict["numTurns"],
+             u'seed': resultDict["seed"],
+             u'costDictList': resultDict["federateCostDictList"],
+                 u'revenueList': resultDict["federateRevenueList"],
+                    }
+            db.results.insert_one(doc)
+
+        if dbName is not None:
+            db[dbName].insert_one(doc)
+    else:
+        print("query found")
+
+def execute(resultDict, federates, nodefederatedict, nodeelementdict, names):
+    resultDict["federateCostDictList"] = json.dumps([f.costDic for f in federates])
+    taskid = 0
+    for f in federates:
+        f.cash = 0
+
+    for t in range(T):
+        p = 0.3
+        sources = []
+        sourcetasks = []
+        auctioneer = Auctioneer(nodes=names, nodefederatedict=nodefederatedict, nodeelementdict=nodeelementdict)
+        while not sources:
+            sources = [numelemenentdict[r] for r in range(1, 9) if random.random() < p]
+
+        # print("sources:", sources)
+        for s in sources:
+            sourcetasks.append((s, Task(time=0, id=taskid, element=nodeelementdict[s],
+                                        federate=namefederatedict[re.search(r'.+\.(F\d)\..+', s).group(1)])))
+            taskid += 1
+
+        for source, task in sourcetasks:
+            nodelists = findAllPaths(G, [source], destinations)
+            for nodelist in nodelists:
+                # print("Add path:", nodelist)
+                auctioneer.addPath(task, [nodeelementdict[n] for n in nodelist])
+
+        # print [(x.taskid, y) for (x, y) in auctioneer.pathdict.items()]
+        # print("auctioneer path dictionary:", auctioneer.pathdict)
+        auctioneer.inquirePrice()
+        # for path in auctioneer.pathlist:
+        #     # print("Task federate:", path.task.federateOwner.name)
+        #     # print("path list:", path.nodelist)
+        #     print("path cost and nodelist:", path.pathBid, path.nodelist)
+        # print("anfs: auctioneer path cost:", [path.pathBid for path in auctioneer.pathlist])
+        # auctioneer.findCompatibleBundles()
+        auctioneer.findBestBundle()
+        # print("Best bundle cost:", auctioneer.currentBestPathBundle.bundleCost, auctioneer.currentBestPathBundle.bundleRevenue)
+        auctioneer.evolveBundles()
+        auctioneer.deliverTasks()
+
+    for f in federates:
+        print(f.name, f.cash)
+    # for path in auctioneer.currentBestPathBundle.pathlist:
+    #     print(path.nodelist ,path.getPathPrice())
+
+    resultDict["federateRevenueList"] = json.dumps([f.cash for f in federates])
+
+    print(resultDict)
+    return resultDict
+
 
 if __name__ == '__main__':
 
@@ -187,46 +283,91 @@ if __name__ == '__main__':
         for f in federates:
             f.nodeElementDict = nodeelementdict
 
-        auctioneer = Auctioneer(nodes = names, nodefederatedict = nodefederatedict, nodeelementdict = nodeelementdict)
+
 
         # print "name to federate dict: ", namefederatedict
-        T = 3
-        taskid = 0
+        T = 20
+        nodefederatetuple = [(a[0], int(a[1][0])) for a in net["nodes"]]
+        resultDict = {"experiment": "Network Auctioneer",
+                      "seed": None,
+                      "numTurns": T,
+                      "graphdict": json.dumps({
+                          "nodefederatetuple": sorted(nodefederatetuple),
+                          "edges": sorted(net["edges"])
+                      }),
+                      "numFederates": len(set([a[1] for a in nodefederatetuple])),
+                     "federateCostDictList": None,
+                     "federateRevenueList":None
+        }
 
-        for t in range(T):
-            p = 0.3
-            sources = []
-            sourcetasks = []
-            while not sources:
-                sources = [numelemenentdict[r] for r in range(1,9) if random.random()<p]
-            for s in sources:
-                sourcetasks.append((s, Task(time = 0, id = taskid, element = nodeelementdict[s],federate = namefederatedict[re.search(r'.+\.(F\d)\..+', s).group(1)])))
-                taskid += 1
+        costrange = range(0, 501, 50)
+        for seed in range(10):
+            print("Seed:", seed)
+            random.seed(seed)
+            resultDict["seed"] = seed
+            for costSGL in costrange:
+                for j in range(len(federates)):
+                    for f in federates:
+                        f.costDic['oSGL'] = costSGL
+                        f.costDic['oISL'] = costSGL / 2.
 
-            for source, task in sourcetasks:
-                nodelists = findAllPaths(G, [source], destinations)
-                for nodelist in nodelists:
-                    # print("Add path:", nodelist)
-                    auctioneer.addPath(task, [nodeelementdict[n] for n in nodelist])
+                    for costSGL2 in range(max(costSGL - 200, 0), costSGL + 200 + 1, 50):
+                        federates[j].costDic['oSGL'] = costSGL2
+                        federates[j].costDic['oISL'] = costSGL2/2.
 
-            # print [(x.taskid, y) for (x, y) in auctioneer.pathdict.items()]
-            # print("auctioneer path dictionary:", auctioneer.pathdict)
-            auctioneer.inquirePrice()
-            # for path in auctioneer.pathlist:
-            #     # print("Task federate:", path.task.federateOwner.name)
-            #     # print("path list:", path.nodelist)
-            #     print("path cost and nodelist:", path.pathBid, path.nodelist)
-            # print("anfs: auctioneer path cost:", [path.pathBid for path in auctioneer.pathlist])
-            # auctioneer.findCompatibleBundles()
-            auctioneer.findBestBundle()
-            print("Best bundle cost:", auctioneer.currentBestPathBundle.bundleCost, auctioneer.currentBestPathBundle.bundleRevenue)
-            auctioneer.evolveBundles()
-            auctioneer.deliverTasks()
+                        resultDict["federateCostDictList"] = json.dumps([f.costDic for f in federates])
 
-        for f in federates:
-            print(f.name, f.cash)
-        for path in auctioneer.currentBestPathBundle.pathlist:
-            print(path.nodelist ,path.getPathPrice())
+                        save2db(resultDict, federates, nodefederatedict, nodeelementdict, names)
+
+                        # taskid = 0
+                        # for f in federates:
+                        #     f.cash = 0
+                        #
+                        # for t in range(T):
+                        #     p = 0.3
+                        #     sources = []
+                        #     sourcetasks = []
+                        #     auctioneer = Auctioneer(nodes=names, nodefederatedict=nodefederatedict, nodeelementdict=nodeelementdict)
+                        #     while not sources:
+                        #         sources = [numelemenentdict[r] for r in range(1,9) if random.random()<p]
+                        #
+                        #     # print("sources:", sources)
+                        #     for s in sources:
+                        #         sourcetasks.append((s, Task(time = 0, id = taskid, element = nodeelementdict[s],federate = namefederatedict[re.search(r'.+\.(F\d)\..+', s).group(1)])))
+                        #         taskid += 1
+                        #
+                        #     for source, task in sourcetasks:
+                        #         nodelists = findAllPaths(G, [source], destinations)
+                        #         for nodelist in nodelists:
+                        #             # print("Add path:", nodelist)
+                        #             auctioneer.addPath(task, [nodeelementdict[n] for n in nodelist])
+                        #
+                        #     # print [(x.taskid, y) for (x, y) in auctioneer.pathdict.items()]
+                        #     # print("auctioneer path dictionary:", auctioneer.pathdict)
+                        #     auctioneer.inquirePrice()
+                        #     # for path in auctioneer.pathlist:
+                        #     #     # print("Task federate:", path.task.federateOwner.name)
+                        #     #     # print("path list:", path.nodelist)
+                        #     #     print("path cost and nodelist:", path.pathBid, path.nodelist)
+                        #     # print("anfs: auctioneer path cost:", [path.pathBid for path in auctioneer.pathlist])
+                        #     # auctioneer.findCompatibleBundles()
+                        #     auctioneer.findBestBundle()
+                        #     # print("Best bundle cost:", auctioneer.currentBestPathBundle.bundleCost, auctioneer.currentBestPathBundle.bundleRevenue)
+                        #     auctioneer.evolveBundles()
+                        #     auctioneer.deliverTasks()
+                        #
+                        # for f in federates:
+                        #     print(f.name, f.cash)
+                        # # for path in auctioneer.currentBestPathBundle.pathlist:
+                        # #     print(path.nodelist ,path.getPathPrice())
+                        #
+                        # resultDict["federateRevenueList"] = json.dumps([f.cash for f in federates])
+                        #
+                        # print(resultDict)
+
+
+
+
 
 
 

@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af902f19-53da-49b2-8802-04b1c66875c0" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/anfspy/lp_solve.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/anfspy/operationLite.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/anfspy/operations.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/anfspy/Graph.py" afterPath="$PROJECT_DIR$/anfspy/graph.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/auctioneer.py" afterPath="$PROJECT_DIR$/anfspy/auctioneer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/bundle.py" afterPath="$PROJECT_DIR$/anfspy/bundle.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/contextLite.py" afterPath="$PROJECT_DIR$/anfspy/contextLite.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/elementLite.py" afterPath="$PROJECT_DIR$/anfspy/elementLite.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/federateLite.py" afterPath="$PROJECT_DIR$/anfspy/federateLite.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/path.py" afterPath="$PROJECT_DIR$/anfspy/path.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/anfspy/task.py" afterPath="$PROJECT_DIR$/anfspy/task.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/anfs.py" afterPath="$PROJECT_DIR$/bin/anfs.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="anfs.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="anfs.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bin/anfs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2955">
-              <caret line="197" column="24" lean-forward="false" selection-start-line="197" selection-start-column="24" selection-end-line="197" selection-end-column="24" />
+            <state relative-caret-position="458">
+              <caret line="321" column="8" lean-forward="true" selection-start-line="321" selection-start-column="8" selection-end-line="321" selection-end-column="8" />
               <folding>
                 <element signature="e#1#16#0" expanded="true" />
               </folding>
@@ -69,8 +59,8 @@
       <file leaf-file-name="federateLite.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/anfspy/federateLite.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1455">
-              <caret line="97" column="19" lean-forward="false" selection-start-line="97" selection-start-column="19" selection-end-line="97" selection-end-column="19" />
+            <state relative-caret-position="420">
+              <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="20" />
               <folding>
                 <element signature="e#1#10#0" expanded="true" />
               </folding>
@@ -78,11 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="auctioneer.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="auctioneer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/anfspy/auctioneer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="132" column="29" lean-forward="false" selection-start-line="132" selection-start-column="29" selection-end-line="132" selection-end-column="29" />
+            <state relative-caret-position="-134">
+              <caret line="252" column="28" lean-forward="true" selection-start-line="252" selection-start-column="28" selection-end-line="252" selection-end-column="28" />
               <folding>
                 <element signature="e#0#48#0" expanded="true" />
               </folding>
@@ -113,8 +103,8 @@
       <file leaf-file-name="elementLite.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/anfspy/elementLite.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1980">
-              <caret line="132" column="59" lean-forward="false" selection-start-line="132" selection-start-column="59" selection-end-line="132" selection-end-column="59" />
+            <state relative-caret-position="1965">
+              <caret line="131" column="32" lean-forward="true" selection-start-line="131" selection-start-column="32" selection-end-line="131" selection-end-column="32" />
               <folding>
                 <element signature="e#27#36#0" expanded="true" />
               </folding>
@@ -175,6 +165,7 @@
       <find>self.pathlist</find>
       <find>self.cash</find>
       <find>finish</find>
+      <find>time</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -200,13 +191,13 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="10" />
-    <option name="y" value="23" />
+    <option name="x" value="86" />
+    <option name="y" value="86" />
     <option name="width" value="1910" />
-    <option name="height" value="980" />
+    <option name="height" value="988" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -219,52 +210,7 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="anfspy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="anfspy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="anfspy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="anfspy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="anfspy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="anfspy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="anfspy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -441,7 +387,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="23" width="1910" height="980" extended-state="0" />
+    <frame x="86" y="86" width="1910" height="988" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1356784" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -955,26 +901,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/anfspy/federateLite.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1455">
-          <caret line="97" column="19" lean-forward="false" selection-start-line="97" selection-start-column="19" selection-end-line="97" selection-end-column="19" />
-          <folding>
-            <element signature="e#1#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/anfspy/elementLite.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1980">
-          <caret line="132" column="59" lean-forward="false" selection-start-line="132" selection-start-column="59" selection-end-line="132" selection-end-column="59" />
-          <folding>
-            <element signature="e#27#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/anfspy/bundle.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -983,22 +909,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/anfs.py">
+    <entry file="file://$PROJECT_DIR$/anfspy/federateLite.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2955">
-          <caret line="197" column="24" lean-forward="false" selection-start-line="197" selection-start-column="24" selection-end-line="197" selection-end-column="24" />
+        <state relative-caret-position="420">
+          <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="20" />
           <folding>
-            <element signature="e#1#16#0" expanded="true" />
+            <element signature="e#1#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/anfspy/elementLite.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1965">
+          <caret line="131" column="32" lean-forward="true" selection-start-line="131" selection-start-column="32" selection-end-line="131" selection-end-column="32" />
+          <folding>
+            <element signature="e#27#36#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/anfspy/auctioneer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="132" column="29" lean-forward="false" selection-start-line="132" selection-start-column="29" selection-end-line="132" selection-end-column="29" />
+        <state relative-caret-position="-134">
+          <caret line="252" column="28" lean-forward="true" selection-start-line="252" selection-start-column="28" selection-end-line="252" selection-end-column="28" />
           <folding>
             <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/anfs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="321" column="8" lean-forward="true" selection-start-line="321" selection-start-column="8" selection-end-line="321" selection-end-column="8" />
+          <folding>
+            <element signature="e#1#16#0" expanded="true" />
           </folding>
         </state>
       </provider>

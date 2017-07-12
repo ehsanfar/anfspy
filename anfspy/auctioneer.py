@@ -138,7 +138,7 @@ class Auctioneer():
             path.updateValues()
 
         self.updateCompatibleBundles()
-        self.findBestBundle()
+        return self.findBestBundle()
 
     def removeBundles(self, bundlelist):
         # print([b.edgelist for b in bundlelist], " are removed")
@@ -186,12 +186,16 @@ class Auctioneer():
         self.updateBundles()
         self.updateCompatibleBundles()
 
-    def findBestBundle(self, compatiblebundels = None):
+    def findBestBundle(self, compatiblebundels = []):
         # print("length of compatible bundles:", len(self.compatibleBundles))
         if compatiblebundels:
             possible_bundles = compatiblebundels
         else:
             possible_bundles = self.compatibleBundles if self.compatibleBundles else self.updateCompatibleBundles()
+
+        if not possible_bundles:
+            # self.currentBestPathBundle = None
+            return False
 
         path_bundle_cost = [b.bundleCost for b in possible_bundles]
         path_bundle_revenue = [b.bundleRevenue for b in possible_bundles]
@@ -203,6 +207,7 @@ class Auctioneer():
         sorted_revenue = sorted(list(zip(path_bundle_profit, possible_bundles)), reverse = True)
         # print("sorted revenue:", [(x, [p.nodelist for p in y.pathlist]) for x,y in sorted_revenue[:1]])
         self.currentBestPathBundle = sorted_revenue[0][1]
+        return True
 
     def checkBundleinBundle(self, pathbundle, edgebundle):
         all_bundles = []
@@ -219,23 +224,27 @@ class Auctioneer():
         # print("Default profit is: ", previousprofit)
         # print(len(self.edgebundlelist))
         for b in self.edgebundlelist:
+            profit_0 = profit_1 = taskProfit_0 = taskProfit_1 = 0
             # print("Update opp cost: length of compatible bbundles:", len(self.compatibleBundles))
             # print("bundle:", b.edgelist)
             tempprice = b.price
             b.updatePrice(0)
-            self.updateBundles()
-            b.updatePrice(tempprice)
+            if self.updateBundles():
+                b.updatePrice(tempprice)
+                profit_0 = self.currentBestPathBundle.getBundleProfit()
+                taskProfit_0 = self.currentBestPathBundle.getTaskProfit(b.taskAsker)
+
             # self.findBestBundle(compatiblebundles)
-            profit_0 = self.currentBestPathBundle.getBundleProfit()
-            taskProfit_0 = self.currentBestPathBundle.getTaskProfit(b.taskAsker)
             compatiblebundles = [pathbundle for pathbundle in self.compatibleBundles if not self.checkBundleinBundle(pathbundle, b)]
-            self.findBestBundle(compatiblebundles)
+            if self.findBestBundle(compatiblebundles):
+                profit_1 = self.currentBestPathBundle.getBundleProfit()
+                taskProfit_1 = self.currentBestPathBundle.getTaskProfit(b.taskAsker)
+
             # b.updatePrice(10000)
             # self.updateBundles()
-            profit_1 = self.currentBestPathBundle.getBundleProfit()
-            taskProfit_1 = self.currentBestPathBundle.getTaskProfit(b.taskAsker)
-            # print("bundle max, min, OC, task OC:", list(b.edgelist), profit_0, profit_1, profit_0 - profit_1, taskProfit_0, taskProfit_1, taskProfit_0 - taskProfit_1)
-            assert profit_1<= previousprofit, profit_0>= previousprofit
+            if not (profit_1<= previousprofit and profit_0>= previousprofit):
+                print("bundle max, min, OC, task OC:", list(b.edgelist), profit_0, profit_1, profit_0 - profit_1, taskProfit_0, taskProfit_1, taskProfit_0 - taskProfit_1)
+            # assert profit_1<= previousprofit, profit_0>= previousprofit
             b.setGenOppCost(profit_0 - profit_1)
             # print("updated opportunity cost:", b.generalOpportunityCost)
 
@@ -246,10 +255,11 @@ class Auctioneer():
         for b in self.edgebundlelist:
             b.updatePrice(max(b.getGeneralOppCost(), b.getBid()))
 
+        # print("edge bundle list:", self.edgebundlelist, len(self.edgebundlelist))
         while True:
             # print("Evolve bundles")
             removelist = sorted([(b.getGeneralOppCost() - b.getBid(), b) for b in self.edgebundlelist if b.getGeneralOppCost() < b.getBid()])
-            # print("remove list:", [(c, b.edgelist) for c,b in removelist[:3]])
+            # print("remove list:", [(c, b.edgelist) for c,b in removelist[:1]])
             if not removelist:
                 break
             self.removeBundles([r[1] for r in removelist[:1]])
@@ -268,7 +278,8 @@ class Auctioneer():
         for task, path in taskpath:
             task.updatePath(path)
             element = task.elementOwner
-            element.deliverTask(task)
+            if task.getValue(task.federateOwner.time) - path.pathPrice >0:
+                element.deliverTask(task)
 
     # def offerPrice2Federates(self):
     #
