@@ -7,6 +7,7 @@ import pymongo
 import sys, os
 import re
 import networkx as nx
+import random
 # add ofspy to system path
 sys.path.append(os.path.abspath('..'))
 
@@ -138,7 +139,7 @@ if __name__ == '__main__':
     networks = ([
         {"nodes": [(4, "1.MediumSat"), (5, "1.MediumSat"), (6, "2.MediumSat"), (7, "2.MediumSat"), (8, "2.MediumSat"),
                     (1, "3.MediumSat"), (2, "3.MediumSat"), (3, "3.MediumSat"), (10, "1.GroundSta"), (11, "2.GroundSta"), (9, "3.GraundSta")],
-         "edges": [(1,7), (4,7), (4,2), (6,2), (7,3), (7,5), (2,5), (2,8), (3,11), (5,9), (8,10), (3,9), (5,11)],# (5,10), (8,9)],
+         "edges": [(1,7), (4,7), (4,2), (6,2), (7,3), (7,5), (2,5), (2,8), (3,11), (5,9), (8,10), (3,9), (5,11), (5,10), (8,9)],
         "sources": [1, 4, 6],
         "destinations": [9, 10, 11]
          }
@@ -167,7 +168,7 @@ if __name__ == '__main__':
             elements.append(element)
             numelemenentdict[node[0]] = element.name
 
-        print("numelementdict:", numelemenentdict)
+        # print("numelementdict:", numelemenentdict)
         edges = [(numelemenentdict[x], numelemenentdict[y]) for (x,y) in net["edges"]]
         G = nx.DiGraph()
         names = [e.name for e in elements]
@@ -176,35 +177,56 @@ if __name__ == '__main__':
         sources = [numelemenentdict[x] for x in net["sources"]]
         destinations = [numelemenentdict[x] for x in net["destinations"]]
 
+        nodeelementdict = {e.name: e for e in elements}
+        # print("ndoe element dict:", 'S.F3.1' in nodeelementdict, namefederatedict.keys())
 
-        sourcetasks = [(s, Task(time = 0, id = i, federate = namefederatedict[re.search(r'.+\.(F\d)\..+', s).group(1)])) for i, s in enumerate(sources)]
+        # sourcetasks = [(s, Task(time = 0, id = i, element = nodeelementdict[s],federate = namefederatedict[re.search(r'.+\.(F\d)\..+', s).group(1)])) for i, s in enumerate(sources)]
 
         nodefederatedict = {n: namefederatedict[re.search(r'.+\.(F\d)\..+', n).group(1)] for n in names}
 
-        nodeelementdict = {e.name: e for e in elements}
+        for f in federates:
+            f.nodeElementDict = nodeelementdict
 
         auctioneer = Auctioneer(nodes = names, nodefederatedict = nodefederatedict, nodeelementdict = nodeelementdict)
 
         # print "name to federate dict: ", namefederatedict
+        T = 3
+        taskid = 0
 
-        for source, task in sourcetasks:
-            nodelists = findAllPaths(G, [source], destinations)
-            for nodelist in nodelists:
-                # print("Add path:", nodelist)
-                auctioneer.addPath(task, nodelist)
+        for t in range(T):
+            p = 0.3
+            sources = []
+            sourcetasks = []
+            while not sources:
+                sources = [numelemenentdict[r] for r in range(1,9) if random.random()<p]
+            for s in sources:
+                sourcetasks.append((s, Task(time = 0, id = taskid, element = nodeelementdict[s],federate = namefederatedict[re.search(r'.+\.(F\d)\..+', s).group(1)])))
+                taskid += 1
 
-        # print [(x.taskid, y) for (x, y) in auctioneer.pathdict.items()]
-        # print("auctioneer path dictionary:", auctioneer.pathdict)
-        auctioneer.inquirePrice()
-        for path in auctioneer.pathlist:
-            # print("Task federate:", path.task.federateOwner.name)
-            # print("path list:", path.nodelist)
-            print("path cost and nodelist:", path.pathcost, path.nodelist)
-        # print("anfs: auctioneer path cost:", [path.pathcost for path in auctioneer.pathlist])
-        # auctioneer.findCompatibleBundles()
-        auctioneer.findBestBundle()
-        print("Best bundle cost:", auctioneer.currentBestPathBundle.bundlecost, auctioneer.currentBestPathBundle.bundlerevenue)
-        auctioneer.updateOpportunityCost()
+            for source, task in sourcetasks:
+                nodelists = findAllPaths(G, [source], destinations)
+                for nodelist in nodelists:
+                    # print("Add path:", nodelist)
+                    auctioneer.addPath(task, [nodeelementdict[n] for n in nodelist])
+
+            # print [(x.taskid, y) for (x, y) in auctioneer.pathdict.items()]
+            # print("auctioneer path dictionary:", auctioneer.pathdict)
+            auctioneer.inquirePrice()
+            # for path in auctioneer.pathlist:
+            #     # print("Task federate:", path.task.federateOwner.name)
+            #     # print("path list:", path.nodelist)
+            #     print("path cost and nodelist:", path.pathBid, path.nodelist)
+            # print("anfs: auctioneer path cost:", [path.pathBid for path in auctioneer.pathlist])
+            # auctioneer.findCompatibleBundles()
+            auctioneer.findBestBundle()
+            print("Best bundle cost:", auctioneer.currentBestPathBundle.bundleCost, auctioneer.currentBestPathBundle.bundleRevenue)
+            auctioneer.evolveBundles()
+            auctioneer.deliverTasks()
+
+        for f in federates:
+            print(f.name, f.cash)
+        for path in auctioneer.currentBestPathBundle.pathlist:
+            print(path.nodelist ,path.getPathPrice())
 
 
 

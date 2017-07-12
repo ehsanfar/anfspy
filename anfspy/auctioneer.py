@@ -21,6 +21,7 @@ class Auctioneer():
         self.federateEdgeBundles = {}
         self.tasks = []
         self.compatibleBundles = None
+        self.bundleBidDict = {}
 
     def reset(self):
         self.pathdict = {}
@@ -47,16 +48,18 @@ class Auctioneer():
             # print("auctioneer: edge:", edge)
             # print(self.nodes)
             federate = self.nodeFederateDict[edge[1]]
-            if federate not in federatebundledict:
+            if federate.name not in federatebundledict:
                 federatebundledict[federate.name] = []
 
             federatebundledict[federate.name].append((edge))
             # print("Auctioneer: Find path fed dict:", federate.name, edge)
 
-        federatebundledict = {k: EdgeBundle(v, path) for (k, v) in federatebundledict.items()}
-        # print("Auctioneer: federate and bundles:", [(a, b.edgelist) for (a,b) in federatebundledict.items()])
+        # print("path:", nodelist, edgelist)
+        # print("Auctioneer: federate and bundles:", [(a, len(b)) for (a,b) in federatebundledict.items()])
+        federatebundledict = {k: EdgeBundle(v, path, self.namefederatedict[k]) for (k, v) in federatebundledict.items()}
 
         path.updateBundles(federatebundledict)
+        # print("Path and federate bundle list:", path.nodelist, [b.edgelist for b in federatebundledict.values()])
         self.edgebundlelist.extend(federatebundledict.values())
         # print("Auctioneer: federatebundledict:", federatebundledict)
         return federatebundledict
@@ -73,6 +76,7 @@ class Auctioneer():
         return dict1
 
     def uniquePermutations(self, indexlist):
+        # print("indexlist:", indexlist)
         # print("uniquePermulations:", [[p.nodelist for p in pathlist] for pathlist in indexlist])
         ntasks = len(indexlist)
         permutations = []
@@ -83,6 +87,7 @@ class Auctioneer():
 
         for c in combinations:
             newlist = [indexlist[i] for i in c]
+            # print("newlist:", newlist)
             tempproducts = itertools.product(*newlist)
             # print("Permutations:", [p.nodelist for p in list(tempproducts)])
             permutations.extend(list(tempproducts))
@@ -108,9 +113,10 @@ class Auctioneer():
         # print(True)
         return True
 
-    def updateCompatibleBundles(self):
-        if not self.compatibleBundles:
+    def updateCompatibleBundles(self, forced = False):
+        if not self.compatibleBundles or forced:
             all_paths = list(self.pathdict.values())
+            # print("Update compatible bundles: all paths:", all_paths)
             # print("All paths:", self.pathdict)
             probable_products = self.uniquePermutations(all_paths)
             possible_bundles = [PathBundle(plist) for plist in probable_products if self.checkPathCombinations(plist)]
@@ -121,17 +127,35 @@ class Auctioneer():
             # return possible_bundles
 
         for pathbundle in self.compatibleBundles:
-            pathbundle.updateCost()
+            pathbundle.updateValues()
 
-    def updateBundleCost(self):
+    def updateBundleBid(self):
         for edgebundle in self.edgebundlelist:
-            edgebundle.updateCost(self.bundleCostDict[edgebundle])
+            edgebundle.updateBid(self.bundleBidDict[edgebundle])
 
+    def updateBundles(self):
         for path in self.pathlist:
-            path.updateCost()
+            path.updateValues()
 
         self.updateCompatibleBundles()
         self.findBestBundle()
+
+    def removeBundles(self, bundlelist):
+        # print([b.edgelist for b in bundlelist], " are removed")
+        self.edgebundlelist = sorted([b for b in self.edgebundlelist if b not in bundlelist])
+        bundleset = set(bundlelist)
+        # for p in self.pathlist:
+        #     print("path and intersection with bundles:", p.nodelist, [b.edgelist for b in set(p.edgebundles).intersection(bundleset)])
+        self.pathlist = [p for p in self.pathlist if not set(p.edgebundles).intersection(bundleset)]
+        for taskid, paths in self.pathdict.items():
+            newpaths = [p for p in paths if p in self.pathlist]
+            self.pathdict[taskid] = newpaths
+
+        emptykeys = [k for k in self.pathdict if not self.pathdict[k]]
+        for k in emptykeys:
+            self.pathdict.pop(taskid, None)
+
+        self.updateCompatibleBundles(forced = True)
 
 
     def inquirePrice(self):
@@ -143,28 +167,34 @@ class Auctioneer():
 
         # print("auctioneer: federateBundleDict:", federateBundleDict)
         # print("Auctioneer: federate and bundles:", [(f, [b.edgelist for b in bundles]) for (f,bundles) in federateBundleDict.items()])
-        self.bundleCostDict = {}
+        self.bundleBidDict = {}
         for fed, bundleset in federateBundleDict.items():
             bundlelist = list(bundleset)
             # print("Federate:", fed)
             # print("bundle list:", edgebundlelist)
             # print("Inquireprice: bundle list federates:", [[(self.nodeFederateDict[x].name, self.nodeFederateDict[y].name) for (x,y) in bundle.edgelist] for bundle in edgebundlelist])
             # print("Auctioneer: fed and bundleset", fed, [b.edgelist for b in edgebundlelist])
-            tempdict = self.namefederatedict[fed].getBundleListCost(bundlelist, self.nodeElementDict)
-            # print("Auctioneer: asker federate protocol cost:", [(b.parentFederate.name, fed, c) for (b,c) in tempdict.items()])
+            tempdict = self.namefederatedict[fed].getBundleBid(bundlelist)
+            # print("Auctioneer: asker federate protocol cost:", [(b.federateAsker.name, fed, c) for (b,c) in tempdict.items()])
 
             for b in tempdict:
-                assert b not in self.bundleCostDict
-                self.bundleCostDict[b] = tempdict[b]
+                assert b not in self.bundleBidDict
+                self.bundleBidDict[b] = tempdict[b]
 
-            # bundleCostDict = {x: y for x,y in zip(edgebundlelist, costlist)}
-        self.updateBundleCost()
+            # bundleBidDict = {x: y for x,y in zip(edgebundlelist, costlist)}
+        self.updateBundleBid()
+        self.updateBundles()
         self.updateCompatibleBundles()
 
-    def findBestBundle(self):
-        possible_bundles = self.compatibleBundles if self.compatibleBundles else self.updateCompatibleBundles()
-        path_bundle_cost = [b.bundlecost for b in possible_bundles]
-        path_bundle_revenue = [b.bundlerevenue for b in possible_bundles]
+    def findBestBundle(self, compatiblebundels = None):
+        # print("length of compatible bundles:", len(self.compatibleBundles))
+        if compatiblebundels:
+            possible_bundles = compatiblebundels
+        else:
+            possible_bundles = self.compatibleBundles if self.compatibleBundles else self.updateCompatibleBundles()
+
+        path_bundle_cost = [b.bundleCost for b in possible_bundles]
+        path_bundle_revenue = [b.bundleRevenue for b in possible_bundles]
         path_bundle_profit = [x-y for (x,y) in zip(path_bundle_revenue, path_bundle_cost)]
         # path_bundle_length = [b.length for b in possible_bundles]
         # print("pathbundle cost:", path_bundle_cost)
@@ -174,22 +204,83 @@ class Auctioneer():
         # print("sorted revenue:", [(x, [p.nodelist for p in y.pathlist]) for x,y in sorted_revenue[:1]])
         self.currentBestPathBundle = sorted_revenue[0][1]
 
+    def checkBundleinBundle(self, pathbundle, edgebundle):
+        all_bundles = []
+        for path in pathbundle.pathlist:
+            all_bundles.extend(path.edgebundles)
+
+        # print("chekc bundle in bundle:", all_bundles)
+        if edgebundle in all_bundles:
+            return True
+        return False
+
     def updateOpportunityCost(self):
         previousprofit = self.currentBestPathBundle.getBundleProfit()
-        print("Default profit is: ", previousprofit)
+        # print("Default profit is: ", previousprofit)
+        # print(len(self.edgebundlelist))
         for b in self.edgebundlelist:
-            print("bundle:", b.edgelist)
-            tempcost = self.bundleCostDict[b]
-            self.bundleCostDict[b] = 0
-            self.updateBundleCost()
+            # print("Update opp cost: length of compatible bbundles:", len(self.compatibleBundles))
+            # print("bundle:", b.edgelist)
+            tempprice = b.price
+            b.updatePrice(0)
+            self.updateBundles()
+            b.updatePrice(tempprice)
+            # self.findBestBundle(compatiblebundles)
             profit_0 = self.currentBestPathBundle.getBundleProfit()
-            self.bundleCostDict[b] = 1000
-            self.updateBundleCost()
+            taskProfit_0 = self.currentBestPathBundle.getTaskProfit(b.taskAsker)
+            compatiblebundles = [pathbundle for pathbundle in self.compatibleBundles if not self.checkBundleinBundle(pathbundle, b)]
+            self.findBestBundle(compatiblebundles)
+            # b.updatePrice(10000)
+            # self.updateBundles()
             profit_1 = self.currentBestPathBundle.getBundleProfit()
-            self.bundleCostDict[b] = tempcost
+            taskProfit_1 = self.currentBestPathBundle.getTaskProfit(b.taskAsker)
+            # print("bundle max, min, OC, task OC:", list(b.edgelist), profit_0, profit_1, profit_0 - profit_1, taskProfit_0, taskProfit_1, taskProfit_0 - taskProfit_1)
             assert profit_1<= previousprofit, profit_0>= previousprofit
-            print("Opportunity max, min, actual:", profit_1, previousprofit, profit_0, profit_0 - profit_1)
-            b.updateOpportunityCost(profit_1 - profit_0)
+            b.setGenOppCost(profit_0 - profit_1)
+            # print("updated opportunity cost:", b.generalOpportunityCost)
+
+        self.updateBundles()
+
+    def evolveBundles(self):
+        self.updateOpportunityCost()
+        for b in self.edgebundlelist:
+            b.updatePrice(max(b.getGeneralOppCost(), b.getBid()))
+
+        while True:
+            # print("Evolve bundles")
+            removelist = sorted([(b.getGeneralOppCost() - b.getBid(), b) for b in self.edgebundlelist if b.getGeneralOppCost() < b.getBid()])
+            # print("remove list:", [(c, b.edgelist) for c,b in removelist[:3]])
+            if not removelist:
+                break
+            self.removeBundles([r[1] for r in removelist[:1]])
+            # print("length of self.edgebundlelist after remove:", len(self.edgebundlelist))
+            self.updateOpportunityCost()
+
+            # for b in self.edgebundlelist:
+            #     # print("update price")
+            #     b.updatePrice(b.generalOpportunityCost)
+            #
+            # self.updateBundles()
+        self.findBestBundle()
+
+    def deliverTasks(self):
+        taskpath = [(p.task, p) for p in self.currentBestPathBundle.pathlist]
+        for task, path in taskpath:
+            task.updatePath(path)
+            element = task.elementOwner
+            element.deliverTask(task)
+
+    # def offerPrice2Federates(self):
+    #
+    #     for b in self.edgebundlelist:
+    #         federate = b.federateOwner
+    #
+    #         federate.grantBundlePrice(b)
+
+
+
+
+
 
 
 

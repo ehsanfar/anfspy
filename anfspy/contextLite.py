@@ -5,7 +5,7 @@ import queue
 from .federateLite import FederateLite
 import re
 
-from .Graph import Graph
+from .graph import Graph
 
 class ContextLite():
     def __init__(self):

@@ -1,36 +1,46 @@
 from .bundle import EdgeBundle
 
 class Path():
-    def __init__(self, task, nodelist):
-        self.nodelist = nodelist
+    def __init__(self, task, elementlist):
+        self.nodelist = [e.name for e in elementlist]
+        self.elements = elementlist
         self.federates = []
         self.federateCost = {}
         self.federatePrice = {}
         self.federateBundleDict = {}
         self.edgebundles = []
         self.task = task
-        self.pathcost = None
+        self.pathBid = None
+        self.pathPrice = None
 
-    def updateCost(self):
-        cost_list = [b.edgebundlecost for b in self.edgebundles]
-        # print("Path: nodelist and costlist:", self.nodelist, cost_list)
-        if all(isinstance(c, float) or isinstance(c, int) for c in cost_list):
-            self.pathcost = sum(cost_list)
+    def updateValues(self):
+        bid_list = [b.bid for b in self.edgebundles]
+        price_list = [b.price for b in self.edgebundles]
+        # print("Path: nodelist and costlist:", self.nodelist, bid_list)
+        if all(isinstance(c, float) or isinstance(c, int) for c in bid_list):
+            self.pathBid = sum(bid_list)
+            self.pathPrice = sum(price_list)
         else:
-            self.pathcost = None
-
-        # print("update pathcost:", self.nodelist, self.pathcost)
-        return self.pathcost
+            self.pathBid = None
+            self.pathPrice = None
+        # print("update pathBid:", self.nodelist, self.pathBid)
 
     def updatePrice(self, price):
-        self.pathprice = price
+        self.pathPrice = price
 
     def updateBundles(self, federatebundledict):
         self.federateBundleDict = federatebundledict
-        self.edgebundles = federatebundledict.values()
+        self.edgebundles = list(federatebundledict.values())
 
-    def getPathCost(self):
-        return self.updateCost()
+    def getPathBid(self):
+        if self.pathBid is None:
+            self.updateValues()
+        return self.pathBid
+
+    def getPathPrice(self):
+        if self.pathPrice is None:
+            self.updateValues()
+        return self.pathPrice
 
     def getNodeList(self):
         return self.nodelist

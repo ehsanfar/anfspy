@@ -1,12 +1,12 @@
 
 import re
 
-from .operationLite import OperationLite
 from .elementLite import Satellite, GroundStation
+from .bundle import UniqueBundle
 
 
 class FederateLite():
-    def __init__(self, name, context, initialCash=0, operation =OperationLite(), costSGL = 201., costISL = 100.):
+    def __init__(self, name, context, initialCash=0, costSGL = 201., costISL = 100.):
         """
         @param name: the name of this federate
         @type name: L{str}
@@ -25,7 +25,7 @@ class FederateLite():
         self.elements = []
         self.satellites = []
         self.stations = []
-        self.operation = operation
+        # self.operation = operation
         self.costDic = {'oSGL': costSGL, 'oISL': costISL}
         self.tasks = {}
         self.transcounter = 0
@@ -39,6 +39,8 @@ class FederateLite():
         self.activeTasks = set([])
         self.supperGraph = None
         self.pickupProbability = context.pickupProbability
+        self.uniqueBundles = []
+        self.nodeElementDict = {}
 
     def getElements(self):
         """
@@ -114,19 +116,20 @@ class FederateLite():
         self.activeTasks.add(task)
 
     def finishTask(self, task):
-        taskvalue = task.getValue(self.time) - task.pathcost
+        path = task.path
+        taskvalue = task.getValue(self.time) - path.getPathPrice()
         self.cash += taskvalue
-        assert task in self.activeTasks
-        section = task.getSection()
-        assert self.time >= task.initTime
-        duration = max(1, self.time - task.initTime)
-        assert section in range(1, 7)
-
-        # print "Finished tasks (section, taskvalue, taskduration):", section, taskvalue, duration
-        self.taskduration[section] = (self.taskduration[section]*self.taskcounter[section] + duration)/(self.taskcounter[section] + 1.)
-        self.taskvalue[section]  = (self.taskvalue[section]*self.taskcounter[section] + taskvalue)/(self.taskcounter[section] + 1.)
-        self.taskcounter[section] += 1
-        self.activeTasks.remove(task)
+        # assert task in self.activeTasks
+        # section = task.getSection()
+        # assert self.time >= task.initTime
+        # duration = max(1, self.time - task.initTime)
+        # assert section in range(1, 7)
+        #
+        # # print "Finished tasks (section, taskvalue, taskduration):", section, taskvalue, duration
+        # self.taskduration[section] = (self.taskduration[section]*self.taskcounter[section] + duration)/(self.taskcounter[section] + 1.)
+        # self.taskvalue[section]  = (self.taskvalue[section]*self.taskcounter[section] + taskvalue)/(self.taskcounter[section] + 1.)
+        # self.taskcounter[section] += 1
+        # self.activeTasks.remove(task)
 
     def defaultTask(self, task):
         # print "defaulted task:", task.taskid
@@ -189,25 +192,36 @@ class FederateLite():
                         # print len(element.savedTasks)
 
 
-    def getBundleListCost(self, bundlelist, elementDict):
+    def getBundleBid(self, bundlelist):
         # print("Federates: bundellist:", edgebundlelist)
         alledges = [edge for bundle in bundlelist for edge in bundle.edgelist]
         assert all([re.search(r'.+\.(F\d)\..+', tup[1]).group(1) == self.name for tup in alledges])
-        # edgeAskerDict = {edge: bundle.parentFederate for bundle in edgebundlelist for edge in bundle.edgelist}
+        # edgeAskerDict = {edge: bundle.federateAsker for bundle in edgebundlelist for edge in bundle.edgelist}
         bundlecostdict = {}
         for bundle in bundlelist:
             edgeAskerDict = {}
-            asker = bundle.parentFederate
+            asker = bundle.federateAsker
 
-            tuplecostdict = {edge: self.getCost('oISL', asker) if elementDict[edge[1]].isSpace() else self.getCost('oSGL', asker) for edge in alledges}
+            tuplecostdict = {edge: self.getCost('oISL', asker) if self.nodeElementDict[edge[1]].isSpace() else self.getCost('oSGL', asker) for edge in alledges}
 
             bundlecostdict[bundle] = sum([tuplecostdict[b] for b in bundle.edgelist])
 
         # print("federates: bundlecst:")
         #
         # for b in bundlecostdict:
-        #     print(b.parentFederate.name, self.name, bundlecostdict[b])
+        #     print(b.federateAsker.name, self.name, bundlecostdict[b])
         return bundlecostdict
+
+    def grantBundlePrice(self, bundle):
+        keybundle = UniqueBundle(bundle)
+        if keybundle in self.uniqueBundles:
+            ubundle = self.uniqueBundles[self.uniqueBundles.index(keybundle)]
+            opportunitycost = bundle.price
+            ubundle.setGenOppCost(opportunitycost)
+        else:
+            self.uniqueBundles.append(keybundle)
+
+
 
 
 

@@ -4,8 +4,8 @@ Elements classes.
 """
 import re
 import queue
-from .Graph import SuperGraph
-from .Graph import SuperGraph
+from .graph import SuperGraph
+from .graph import SuperGraph
 import random
 
 class Element():
@@ -98,6 +98,12 @@ class GroundStation(Element):
     def saveTask(self, task, nextstop = None):
         self.savedTasks.append(task)
         task.federateOwner.finishTask(task)
+        path = task.getPath()
+        bundles = path.edgebundles
+        for b in bundles:
+            price = b.getBundlePrice()
+            federate = b.federateOwner
+            federate.cash += price
         return True
 
 
@@ -124,7 +130,7 @@ class Satellite(Element):
         return True
 
     def deliverTask(self, task):
-        self.transmitTask(task, iter(task.pathlist[1:]))
+        self.transmitTask(task, iter(task.path.elements[1:]))
 
     def saveTask(self, task, deltatime):
         if self.canSave(task):
