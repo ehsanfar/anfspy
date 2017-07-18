@@ -145,7 +145,7 @@ def save2db(resultDict, federates, nodefederatedict, nodeelementdict, names):
         print(doc)
 
     if doc is None:
-        # db.results.remove(query) #this is temporary, should be removed afterwards
+        db.results.remove(query) #this is temporary, should be removed afterwards
         doc = db.results.find_one(query)
         print("found doc:",doc)
         if doc is None:
@@ -167,7 +167,7 @@ def save2db(resultDict, federates, nodefederatedict, nodeelementdict, names):
 
 def execute(resultDict, federates, nodefederatedict, nodeelementdict, names):
     resultDict["federateCostDictList"] = json.dumps([f.costDic for f in federates])
-    taskid = 0
+    global taskid
     for f in federates:
         f.cash = 0
 
@@ -300,8 +300,10 @@ if __name__ == '__main__':
                      "federateRevenueList":None
         }
 
-        costrange = range(0, 501, 50)
-        for seed in range(10):
+        taskid = 0
+
+        costrange = range(2000, 2001)#range(0, 501, 50)
+        for seed in range(1):
             print("Seed:", seed)
             random.seed(seed)
             resultDict["seed"] = seed
@@ -311,7 +313,7 @@ if __name__ == '__main__':
                         f.costDic['oSGL'] = costSGL
                         f.costDic['oISL'] = costSGL / 2.
 
-                    for costSGL2 in range(max(costSGL - 200, 0), costSGL + 200 + 1, 50):
+                    for costSGL2 in costrange: #range(max(costSGL - 200, 0), costSGL + 200 + 1, 50):
                         federates[j].costDic['oSGL'] = costSGL2
                         federates[j].costDic['oISL'] = costSGL2/2.
 

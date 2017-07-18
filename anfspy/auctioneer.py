@@ -242,8 +242,8 @@ class Auctioneer():
 
             # b.updatePrice(10000)
             # self.updateBundles()
-            if not (profit_1<= previousprofit and profit_0>= previousprofit):
-                print("bundle max, min, OC, task OC:", list(b.edgelist), profit_0, profit_1, profit_0 - profit_1, taskProfit_0, taskProfit_1, taskProfit_0 - taskProfit_1)
+            # if not (profit_1<= previousprofit and profit_0>= previousprofit):
+                # print("bundle max, min, OC, task OC:", list(b.edgelist), profit_0, profit_1, profit_0 - profit_1, taskProfit_0, taskProfit_1, taskProfit_0 - taskProfit_1)
             # assert profit_1<= previousprofit, profit_0>= previousprofit
             b.setGenOppCost(profit_0 - profit_1)
             # print("updated opportunity cost:", b.generalOpportunityCost)
@@ -278,6 +278,7 @@ class Auctioneer():
         for task, path in taskpath:
             task.updatePath(path)
             element = task.elementOwner
+            print("Task final value and pathprice:", task.getValue(task.federateOwner.time) , path.pathPrice)
             if task.getValue(task.federateOwner.time) - path.pathPrice >0:
                 element.deliverTask(task)
 
